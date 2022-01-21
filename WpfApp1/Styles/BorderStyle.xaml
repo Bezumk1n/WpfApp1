@@ -1,0 +1,21 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Style x:Key="ReactionBlockBorder" TargetType="{x:Type Border}">
+        <Setter Property="Margin" Value="1"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="BorderBrush" Value="LightBlue"/>
+        <Setter Property="MinHeight" Value="30"/>
+        <Setter Property="MinWidth" Value="30"/>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding State}" Value="Snake">
+                <Setter Property="BorderBrush" Value="Blue"/>
+                <Setter Property="Background" Value="DodgerBlue"/>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding State}" Value="Food">
+                <Setter Property="BorderBrush" Value="Red"/>
+                <Setter Property="Background" Value="LightPink"/>
+                <Setter Property="CornerRadius" Value="9"/>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+</ResourceDictionary>
