@@ -79,7 +79,8 @@ namespace WpfApp1
         }
         public List<List<Cell>> Arena
         {
-            get => _arena;
+            get => _arena
+                ;
             set
             {
                 _arena = value;
@@ -152,15 +153,16 @@ namespace WpfApp1
             _game = new Game(this, Rows, Columns);
             Arena = _game.Arena;
 
-            CountColumns(Columns);
+            SetColumns();
             NumbersToLetters(Rows);
         }
 
-        private void CountColumns(int columns)
+        private void SetColumns()
         {
-            foreach (var col in columns)
-            { 
-            }
+            var list = new List<int>();
+            for (int i = 1; i <= Columns; i++)
+                list.Add(i);
+            ColumnsNumber = list.ToArray();
         }
 
         private void NumbersToLetters(int rows)
