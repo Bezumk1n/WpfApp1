@@ -7,7 +7,42 @@
              d:DesignHeight="450" d:DesignWidth="800"
              xmlns:controls="clr-namespace:WpfApp1.Helpers"
              xmlns:control="clr-namespace:WpfApp1.CustomControls">
-    <control:ReactionBlockCustomControl 
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <ItemsControl Grid.Row="1" Grid.Column="0" Grid.RowSpan="2" ItemsSource="{Binding RowsHeaders}" Margin="10">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding}" FontSize="16" VerticalAlignment="Center"/>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <UniformGrid Columns="1"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+        </ItemsControl>
+        <ItemsControl Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"  ItemsSource="{Binding ColumnsHeaders}" Margin="10">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding}" FontSize="16" HorizontalAlignment="Center"/>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <UniformGrid Rows="1"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+        </ItemsControl>
+        <control:ReactionBlockCustomControl Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" Grid.RowSpan="2"
         ItemsSource="{Binding Arena}"
         TEST_FIELD=""
         Rows=""
@@ -24,21 +59,25 @@
                             <DataTemplate>
                                 <Grid>
                                     <Border Style="{StaticResource ReactionBlockBorder}"/>
-                                    <StackPanel>
-                                        <TextBlock Text="{Binding Index}" Style="{StaticResource ReactionBlock_TextBlock}" Padding="3" />
-                                        <TextBlock Text="{Binding Position}" Style="{StaticResource ReactionBlock_TextBlock}" Padding="3"/>
-                                    </StackPanel>
+                                    <Viewbox HorizontalAlignment="Left">
+                                        <StackPanel Orientation="Vertical">
+                                            <TextBlock Text="{Binding Index}" Style="{StaticResource ReactionBlock_TextBlock}" Padding="3" />
+                                            <TextBlock Text="{Binding Position}" Style="{StaticResource ReactionBlock_TextBlock}" Padding="3"/>
+                                        </StackPanel>
+                                    </Viewbox>
                                 </Grid>
                             </DataTemplate>
                         </control:ReactionBlockCustomControl.ItemTemplate>
                         <control:ReactionBlockCustomControl.ItemsPanel>
                             <ItemsPanelTemplate>
-                            <UniformGrid Rows="1"/>
-                        </ItemsPanelTemplate>
+                                <UniformGrid Rows="1"/>
+                            </ItemsPanelTemplate>
                         </control:ReactionBlockCustomControl.ItemsPanel>
                     </control:ReactionBlockCustomControl>
 
                 </DataTemplate>
             </control:ReactionBlockCustomControl.ItemTemplate>
         </control:ReactionBlockCustomControl>
+    </Grid>
+    
 </UserControl>

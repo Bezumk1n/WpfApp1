@@ -56,24 +56,24 @@ namespace WpfApp1
             }
         }
 
-        private IEnumerable<char> _letters;
-        public IEnumerable<char> Letters
+        private IEnumerable<char> _RowsHeaders;
+        public IEnumerable<char> RowsHeaders
         {
-            get => _letters;
+            get => _RowsHeaders;
             set
             {
-                _letters = value;
+                _RowsHeaders = value;
                 OnPropertyChanged();
             }
         }
 
-        private IEnumerable<int> _columnsNumber;
-        public IEnumerable<int> ColumnsNumber
+        private IEnumerable<int> _ColumnsHeaders;
+        public IEnumerable<int> ColumnsHeaders
         {
-            get => _columnsNumber;
+            get => _ColumnsHeaders;
             set
             {
-                _columnsNumber = value;
+                _ColumnsHeaders = value;
                 OnPropertyChanged();
             }
         }
@@ -153,27 +153,27 @@ namespace WpfApp1
             _game = new Game(this, Rows, Columns);
             Arena = _game.Arena;
 
-            SetColumns();
-            NumbersToLetters(Rows);
+            SetColumnsHeaders();
+            SetRowsHeaders();
         }
 
-        private void SetColumns()
+        private void SetColumnsHeaders()
         {
-            var list = new List<int>();
+            var columnsHeaders = new List<int>();
             for (int i = 1; i <= Columns; i++)
-                list.Add(i);
-            ColumnsNumber = list.ToArray();
+                columnsHeaders.Add(i);
+            ColumnsHeaders = columnsHeaders.ToArray();
         }
 
-        private void NumbersToLetters(int rows)
+        private void SetRowsHeaders()
         {
-            var letters = "";
-            for (int i = 1; i <= rows; i++)
+            var rowsHeaders = "";
+            for (int i = 1; i <= Rows; i++)
             {
                 Char c = (Char)(65 + (i - 1));
-                letters += c;
+                rowsHeaders += c;
             }
-            Letters = letters;
+            RowsHeaders = rowsHeaders;
         }
 
         public MainViewModel()

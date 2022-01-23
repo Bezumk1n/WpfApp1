@@ -105,45 +105,8 @@
                 </ItemsPanelTemplate>
             </ItemsControl.ItemsPanel>-->
         </ItemsControl>
-
-        <Grid Grid.Row="2" ShowGridLines="True">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <ItemsControl Grid.Row="1" Grid.Column="0" Grid.RowSpan="2" ItemsSource="{Binding Letters}" Margin="10">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock Text="{Binding}" FontSize="16" VerticalAlignment="Center"/>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-                <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <UniformGrid Columns="1"/>
-                    </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
-            </ItemsControl>
-            <ItemsControl Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"  ItemsSource="{Binding ColumnsNumber}" Margin="10">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock Text="{Binding}" FontSize="16" HorizontalAlignment="Center"/>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-                <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <UniformGrid Rows="1"/>
-                    </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
-            </ItemsControl>
-            <control:ReactionBlockControl Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
-        </Grid>
-
+            
+        <control:ReactionBlockControl Grid.Row="2" />
 
 
         <Border Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Background="White" BorderBrush="LightGray" BorderThickness="1">
