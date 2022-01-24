@@ -45,8 +45,8 @@ namespace WpfApp1
                 List<Cell> row = new List<Cell>();
                 for (int j = 0; j < columns; j++)
                 {
-                    row.Add(new Cell() {Index = idx++, Row = i, Column = j});
-                    Arena2.Add(new Cell() { Index = idx++, Row = i, Column = j });
+                    row.Add(new Cell());
+                    Arena2.Add(new Cell() { Index = idx++, Row = i + 1, Column = j + 1});
 
                 }
                 Arena.Add(row);

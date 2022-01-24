@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Input;
 
 namespace WpfApp1
@@ -120,6 +121,7 @@ namespace WpfApp1
         }
 
         public ICommand NewGameCommand { get; private set; } 
+        public ICommand ClickOnHeaderCommand { get; private set; } 
         public ICommand StartCommand => _startCommand ??= new RelayCommand(parameter =>
         {
             if (!GameRunning)
@@ -190,7 +192,24 @@ namespace WpfApp1
 
         public MainViewModel()
         {
-          NewGameCommand = new RelayCommand(a => NewGame());
+            NewGameCommand = new RelayCommand(a => NewGame());
+            ClickOnHeaderCommand = new RelayCommand(a => ClickOnHeader(a));
+        }
+
+        private void ClickOnHeader(object a)
+        {
+            var type = a.GetType();
+
+            if (type == typeof(string))
+            {
+                var column = int.Parse(a.ToString());
+                Arena2.Where(q=>q.Column == column).Select(q => q.IsSelected = true).ToList();
+            }
+            else
+            { 
+                var row = ((char)a - 65) + 1;
+                Arena2.Where(q => q.Row == row).Select(q => q.IsSelected = true).ToList();
+            }
         }
     }  
 }

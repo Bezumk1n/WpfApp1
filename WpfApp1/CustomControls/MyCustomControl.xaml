@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
              Name="uc">
-    <Grid>
+    <Grid ShowGridLines="True">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
@@ -18,8 +18,10 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <!--Заголовки строк-->
-        <ItemsControl Grid.Row="1" Grid.Column="0" Grid.RowSpan="2" ItemsSource="{Binding _RowsHeaders, ElementName=uc}" Margin="10,10,0,10" ItemTemplate="{Binding _Style_HeaderTemplate, ElementName=uc}">
+        <Label HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5">W</Label>
+            <!--Заголовки строк-->
+        <ItemsControl Grid.Row="1" Grid.Column="0" Grid.RowSpan="2" ItemsSource="{Binding _RowsHeaders, ElementName=uc}" 
+                          ItemTemplate="{Binding _Style_HeaderTemplate, ElementName=uc}">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <UniformGrid Columns="1"/>
@@ -27,7 +29,7 @@
             </ItemsControl.ItemsPanel>
         </ItemsControl>
         <!--Заголовки столбцов-->
-        <ItemsControl Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"  ItemsSource="{Binding _ColumnsHeaders, ElementName=uc}" Margin="10,10,10,0"
+        <ItemsControl Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"  ItemsSource="{Binding _ColumnsHeaders, ElementName=uc}"
                           ItemTemplate="{Binding _Style_HeaderTemplate, ElementName=uc}">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
@@ -37,12 +39,17 @@
         </ItemsControl>
         <!--Реакционный блок-->
         <ItemsControl ItemsSource="{Binding _ItemCells, ElementName=uc}" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" Grid.RowSpan="2">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <UniformGrid Rows="{Binding _RowCount, ElementName=uc}" />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
                     <ItemsControl ItemsSource="{Binding}" ItemTemplate="{Binding _Style_ItemTemplate, ElementName=uc}">
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
-                                <UniformGrid Rows="1"/>
+                                <UniformGrid Rows="1" />
                             </ItemsPanelTemplate>
                         </ItemsControl.ItemsPanel>
                     </ItemsControl>

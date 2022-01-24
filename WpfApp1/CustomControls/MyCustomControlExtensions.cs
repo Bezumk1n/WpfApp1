@@ -213,8 +213,6 @@ namespace WpfApp1.CustomControls
                 UserControl1Control._ColumnsHeaders = null;
                 UserControl1Control._RowsHeaders = null;
             }
-           
-
 
             UserControl1Control.On_ItemsChanged(e);
         }

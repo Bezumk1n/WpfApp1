@@ -8,11 +8,22 @@ namespace WpfApp1
         public int Index { get; set; }
         public int Row { get; set; }
         public int Column { get; set; }
+
+        private bool _isSelected;
+        public bool IsSelected
+        {
+            get => _isSelected;
+            set
+            {
+                _isSelected = value;
+                OnPropertyChanged();
+            }
+        }
         public string Position => GetPosition();
 
         private string GetPosition()
         {
-            return $"{Row + 1}, {Column + 1}";
+            return $"{Row}, {Column}";
         }
 
         private CellState _state;
