@@ -7,15 +7,8 @@ namespace WpfApp1
 {
     public class MainViewModel : NotifyPropertyChanged
     {
-        private int _score;
-        private int _highScore;
-        private List<List<Cell>> _arena;
-        private List<Cell> _arena2 = new List<Cell>();
-        private Game _game;
-        private bool _gameRunning;
-        private bool _gameOver;
-        private ICommand _moveCommand;
-        private ICommand _startCommand;
+
+        private List<Cell> _reactionBlock = new List<Cell>();
 
         private int _Columns = 12;
         public int Columns
@@ -38,26 +31,7 @@ namespace WpfApp1
                 OnPropertyChanged();
             }
         }
-        public int Score
-        {
-            get => _score;
-            set
-            {
-                _score = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public int HighScore
-        {
-            get => _highScore;
-            set
-            {
-                _highScore = value;
-                OnPropertyChanged();
-            }
-        }
-
+       
         private IEnumerable<char> _RowsHeaders;
         public IEnumerable<char> RowsHeaders
         {
@@ -79,97 +53,40 @@ namespace WpfApp1
                 OnPropertyChanged();
             }
         }
-        public List<List<Cell>> Arena
+      
+        public List<Cell> ReactionBlock
         {
-            get => _arena
-                ;
+            get => _reactionBlock;
             set
             {
-                _arena = value;
-                OnPropertyChanged();
-            }
-        }
-        public List<Cell> Arena2
-        {
-            get => _arena2
-                ;
-            set
-            {
-                _arena2 = value;
+                _reactionBlock = value;
                 OnPropertyChanged();
             }
         }
 
-        public bool GameRunning
-        {
-            get => _gameRunning;
-            set
-            {
-                _gameRunning = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public bool GameOver
-        {
-            get => _gameOver;
-            set
-            {
-                _gameOver = value;
-                OnPropertyChanged();
-            }
-        }
-
+        
         public ICommand NewGameCommand { get; private set; } 
         public ICommand ClickOnHeaderCommand { get; private set; } 
         public ICommand SelectAllCommand { get; private set; } 
-        public ICommand StartCommand => _startCommand ??= new RelayCommand(parameter =>
-        {
-            if (!GameRunning)
-            {
-                if (GameOver)
-                    NewGame();
-                else
-                {
-                    GameRunning = true;
-                    _game.Start();
-                }
-            }
-            else
-            {
-                GameRunning = false;
-                _game.Stop();
-            }
-        });
+       
 
-        public ICommand MoveCommand => _moveCommand ??= new RelayCommand(parameter =>
+        private void NewReactionBlock()
         {
-            if (GameRunning && Enum.TryParse(parameter.ToString(), out Direction direction))
-            {
-                _game.Direction = direction;
-            }
-        });
-
-        public void EndGame()
-        {
-            GameRunning = false;
-            GameOver = true;
-            if (HighScore < Score)
-                HighScore = Score;
-        }
-
-        private void NewGame()
-        {
-            if (GameRunning)
-                _game.Stop();
-            GameOver = false;
-            Score = 0;
-            _game = new Game(this, Rows, Columns);
-            Arena = _game.Arena;
-            Arena2 = _game.Arena2;
-
+            CreateReactionBlock();
             SetColumnsHeaders();
             SetRowsHeaders();
+        }
+
+        private void CreateReactionBlock()
+        {
+            var rb = new List<Cell>();
+            var index = 0;
+            for (int i = 0; i < Rows; i++)
+            {
+                for (int j = 0; j < Columns; j++)
+                    rb.Add(new Cell() { Index = index++, Row = i + 1, Column = j + 1 });
+            }
+            ReactionBlock = rb;
         }
 
         private void SetColumnsHeaders()
@@ -193,17 +110,19 @@ namespace WpfApp1
 
         public MainViewModel()
         {
-            NewGameCommand = new RelayCommand(a => NewGame());
+            NewReactionBlock();
+
+            NewGameCommand = new RelayCommand(a => NewReactionBlock());
             ClickOnHeaderCommand = new RelayCommand(a => ClickOnHeader(a));
             SelectAllCommand = new RelayCommand(a => SelectAll());
         }
 
         private void SelectAll()
         {
-            if (Arena2.All(q => q.IsSelected))
-                Arena2.Select(q => q.IsSelected = false).ToList();
+            if (ReactionBlock.All(q => q.IsSelected))
+                ReactionBlock.Select(q => q.IsSelected = false).ToList();
             else
-                Arena2.Select(q => q.IsSelected = true).ToList();
+                ReactionBlock.Select(q => q.IsSelected = true).ToList();
         }
 
         private void ClickOnHeader(object a)
@@ -213,12 +132,12 @@ namespace WpfApp1
             if (type == typeof(string))
             {
                 var column = int.Parse(a.ToString());
-                Arena2.Where(q=>q.Column == column).Select(q => q.IsSelected = true).ToList();
+                ReactionBlock.Where(q=>q.Column == column).Select(q => q.IsSelected = true).ToList();
             }
             else
             { 
                 var row = ((char)a - 65) + 1;
-                Arena2.Where(q => q.Row == row).Select(q => q.IsSelected = true).ToList();
+                ReactionBlock.Where(q => q.Row == row).Select(q => q.IsSelected = true).ToList();
             }
         }
     }  

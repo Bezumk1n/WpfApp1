@@ -6,8 +6,8 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Styles\ItemControlStyle.xaml"/>
                 <ResourceDictionary Source="Styles\BorderStyle.xaml"/>
+                <ResourceDictionary Source="Styles\TextBlockStyle.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
