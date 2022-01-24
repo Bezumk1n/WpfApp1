@@ -281,5 +281,22 @@ namespace WpfApp1.CustomControls
 
         }
         #endregion
+        #region _Style_SelectAllTemplate
+        public static readonly DependencyProperty _Style_SelectAllTemplateProperty =
+       DependencyProperty.Register("_Style_SelectAllTemplate", typeof(Label), typeof(MyCustomControl), new
+          PropertyMetadata(null, new PropertyChangedCallback(On__Style_SelectAllTemplateChanged)));
+
+        public Label _Style_SelectAllTemplate
+        {
+            get { return (Label)GetValue(_Style_SelectAllTemplateProperty); }
+            set { SetValue(_Style_SelectAllTemplateProperty, value); }
+        }
+
+        private static void On__Style_SelectAllTemplateChanged(DependencyObject d,
+           DependencyPropertyChangedEventArgs e)
+        {
+
+        }
+        #endregion
     }
 }

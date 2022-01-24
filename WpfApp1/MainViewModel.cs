@@ -122,6 +122,7 @@ namespace WpfApp1
 
         public ICommand NewGameCommand { get; private set; } 
         public ICommand ClickOnHeaderCommand { get; private set; } 
+        public ICommand SelectAllCommand { get; private set; } 
         public ICommand StartCommand => _startCommand ??= new RelayCommand(parameter =>
         {
             if (!GameRunning)
@@ -194,6 +195,15 @@ namespace WpfApp1
         {
             NewGameCommand = new RelayCommand(a => NewGame());
             ClickOnHeaderCommand = new RelayCommand(a => ClickOnHeader(a));
+            SelectAllCommand = new RelayCommand(a => SelectAll());
+        }
+
+        private void SelectAll()
+        {
+            if (Arena2.All(q => q.IsSelected))
+                Arena2.Select(q => q.IsSelected = false).ToList();
+            else
+                Arena2.Select(q => q.IsSelected = true).ToList();
         }
 
         private void ClickOnHeader(object a)

@@ -108,7 +108,7 @@
 
         <!--<control:ReactionBlockControl Grid.Row="2" />-->
 
-        <Border Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Background="White" BorderBrush="LightGray" BorderThickness="1">
+        <!--<Border Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Background="White" BorderBrush="LightGray" BorderThickness="1">
             <Border.Style>
                 <Style TargetType="Border">
                     <Setter Property="Visibility" Value="Hidden"/>
@@ -123,7 +123,7 @@
                 <TextBlock Margin="20,10" Text="GAME OVER" FontSize="30" FontWeight="Bold"/>
                 <TextBlock Margin="20,10" Text="{Binding Score, StringFormat=Score: {0}}" FontSize="20" HorizontalAlignment="Center"/>
             </StackPanel>
-        </Border>
+        </Border>-->
         <control:MyCustomControl Grid.Row="1"
                                  _RowCount="{Binding Rows}" 
                                  _ColumnCount="{Binding Columns}"  
@@ -155,6 +155,16 @@
                     </TextBlock>
                 </DataTemplate>
             </control:MyCustomControl._Style_HeaderTemplate>
+            <control:MyCustomControl._Style_SelectAllTemplate>
+                <Label Content="W">
+                    <Label.InputBindings>
+                        <MouseBinding 
+                                Command="{Binding DataContext.SelectAllCommand, RelativeSource={RelativeSource AncestorType=UserControl}}" 
+                                MouseAction="LeftClick" 
+                                CommandParameter="{Binding}"/>
+                    </Label.InputBindings>
+                </Label>
+            </control:MyCustomControl._Style_SelectAllTemplate>
         </control:MyCustomControl>
 
     </Grid>
