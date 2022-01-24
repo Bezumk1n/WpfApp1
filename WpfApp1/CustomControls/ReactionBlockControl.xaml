@@ -18,7 +18,8 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <ItemsControl Grid.Row="1" Grid.Column="0" Grid.RowSpan="2" ItemsSource="{Binding RowsHeaders}" Margin="10">
+        <!--Заголовки строк-->
+        <ItemsControl Grid.Row="1" Grid.Column="0" Grid.RowSpan="2" ItemsSource="{Binding RowsHeaders}" Margin="10,10,0,10">
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding}" FontSize="16" VerticalAlignment="Center"/>
@@ -30,7 +31,8 @@
                 </ItemsPanelTemplate>
             </ItemsControl.ItemsPanel>
         </ItemsControl>
-        <ItemsControl Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"  ItemsSource="{Binding ColumnsHeaders}" Margin="10">
+        <!--Заголовки столбцов-->
+        <ItemsControl Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"  ItemsSource="{Binding ColumnsHeaders}" Margin="10,10,10,0">
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding}" FontSize="16" HorizontalAlignment="Center"/>
@@ -42,6 +44,7 @@
                 </ItemsPanelTemplate>
             </ItemsControl.ItemsPanel>
         </ItemsControl>
+        <!--Реакционный блок-->
         <control:ReactionBlockCustomControl Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" Grid.RowSpan="2"
         ItemsSource="{Binding Arena}"
         TEST_FIELD=""
@@ -74,10 +77,8 @@
                             </ItemsPanelTemplate>
                         </control:ReactionBlockCustomControl.ItemsPanel>
                     </control:ReactionBlockCustomControl>
-
                 </DataTemplate>
             </control:ReactionBlockCustomControl.ItemTemplate>
         </control:ReactionBlockCustomControl>
     </Grid>
-    
 </UserControl>

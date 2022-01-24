@@ -168,7 +168,7 @@ namespace WpfApp1
         private void SetRowsHeaders()
         {
             var rowsHeaders = "";
-            for (int i = 0; i <= Rows; i++)
+            for (int i = 0; i < Rows; i++)
             {
                 var c = (char)(65 + i);
                 rowsHeaders += c;
