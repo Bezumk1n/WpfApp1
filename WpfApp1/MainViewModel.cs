@@ -9,6 +9,7 @@ namespace WpfApp1
         private int _score;
         private int _highScore;
         private List<List<Cell>> _arena;
+        private List<Cell> _arena2 = new List<Cell>();
         private Game _game;
         private bool _gameRunning;
         private bool _gameOver;
@@ -87,6 +88,16 @@ namespace WpfApp1
                 OnPropertyChanged();
             }
         }
+        public List<Cell> Arena2
+        {
+            get => _arena2
+                ;
+            set
+            {
+                _arena2 = value;
+                OnPropertyChanged();
+            }
+        }
 
         public bool GameRunning
         {
@@ -152,6 +163,7 @@ namespace WpfApp1
             Score = 0;
             _game = new Game(this, Rows, Columns);
             Arena = _game.Arena;
+            Arena2 = _game.Arena2;
 
             SetColumnsHeaders();
             SetRowsHeaders();

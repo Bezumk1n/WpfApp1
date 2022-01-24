@@ -18,6 +18,7 @@ namespace WpfApp1
         private bool _addDelay;
 
         public List<List<Cell>> Arena { get; }
+        public List<Cell> Arena2 { get; }
         public Direction Direction
         {
             get => _direction;
@@ -38,12 +39,15 @@ namespace WpfApp1
 
             int idx = 0;
             Arena = new List<List<Cell>>();
+            Arena2 = new List<Cell>();
             for (int i = 0; i < rows; i++)
             {
                 List<Cell> row = new List<Cell>();
                 for (int j = 0; j < columns; j++)
                 {
                     row.Add(new Cell() {Index = idx++, Row = i, Column = j});
+                    Arena2.Add(new Cell() { Index = idx++, Row = i, Column = j });
+
                 }
                 Arena.Add(row);
             }
