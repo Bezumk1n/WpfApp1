@@ -67,8 +67,8 @@ namespace WpfApp1
             }
         }
 
-        private IEnumerable<int> _ColumnsHeaders;
-        public IEnumerable<int> ColumnsHeaders
+        private IEnumerable<string> _ColumnsHeaders;
+        public IEnumerable<string> ColumnsHeaders
         {
             get => _ColumnsHeaders;
             set
@@ -159,9 +159,9 @@ namespace WpfApp1
 
         private void SetColumnsHeaders()
         {
-            var columnsHeaders = new List<int>();
+            var columnsHeaders = new List<string>();
             for (int i = 1; i <= Columns; i++)
-                columnsHeaders.Add(i);
+                columnsHeaders.Add(i.ToString("00"));
             ColumnsHeaders = columnsHeaders.ToArray();
         }
 

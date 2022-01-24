@@ -4,6 +4,7 @@
         <Setter Property="Margin" Value="1"/>
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="BorderBrush" Value="LightBlue"/>
+        <Setter Property="Background" Value="AliceBlue"/>
         <Setter Property="MinHeight" Value="30"/>
         <Setter Property="MinWidth" Value="30"/>
         <Style.Triggers>

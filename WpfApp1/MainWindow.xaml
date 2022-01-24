@@ -64,7 +64,7 @@
             <TextBox Margin="5" Text="{Binding Columns}" FontSize="20" FontWeight="Bold"/>
         </StackPanel>
         
-        <ItemsControl Grid.Row="1" Background="AliceBlue" Margin="5" ItemsSource="{Binding Arena}" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <!--<ItemsControl Grid.Row="1" Background="AliceBlue" Margin="5" ItemsSource="{Binding Arena}" HorizontalAlignment="Center" VerticalAlignment="Center">
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
                     <ItemsControl ItemsSource="{Binding}">
@@ -98,12 +98,12 @@
                     </ItemsControl>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
-            <!--<ItemsControl.ItemsPanel>
+            --><!--<ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <VirtualizingStackPanel Orientation="Vertical"/>
                 </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>-->
-        </ItemsControl>
+            </ItemsControl.ItemsPanel>--><!--
+        </ItemsControl>-->
 
         <control:ReactionBlockControl Grid.Row="2" />
         
