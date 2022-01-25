@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace WpfApp1.CustomControls
 {
@@ -11,9 +12,11 @@ namespace WpfApp1.CustomControls
     {
         //Select all Icon
         #region _SelectAllIcon
-        public static readonly DependencyProperty _SelectAllIconProperty =
-       DependencyProperty.Register("_SelectAllIcon", typeof(string), typeof(MyCustomControl), new
-          PropertyMetadata("", new PropertyChangedCallback(On_SelectAllIconChanged)));
+        public static readonly DependencyProperty _SelectAllIconProperty = DependencyProperty.Register(
+            "_SelectAllIcon",
+            typeof(string), 
+            typeof(MyCustomControl), 
+            new PropertyMetadata("", new PropertyChangedCallback(On_SelectAllIconChanged)));
 
         public string _SelectAllIcon
         {
@@ -194,8 +197,8 @@ namespace WpfApp1.CustomControls
         private static void On_ItemsChanged(DependencyObject d,
            DependencyPropertyChangedEventArgs e)
         {
-            MyCustomControl UserControl1Control = d as MyCustomControl;
-            var step = UserControl1Control._ColumnCount;
+            MyCustomControl UserControlControl = d as MyCustomControl;
+            var step = UserControlControl._ColumnCount;
             if (step <= 0)
                 return;
             var items = (IEnumerable<object>)e.NewValue;
@@ -203,7 +206,7 @@ namespace WpfApp1.CustomControls
             var currentIndex = 0;
             var list = new List<List<object>>();
 
-            if (UserControl1Control._RowCount * UserControl1Control._ColumnCount > count)
+            if (UserControlControl._RowCount * UserControlControl._ColumnCount > count)
             {
                 //throw new Exception("Reaction plate - Invalid cells count");
                 return;
@@ -215,30 +218,30 @@ namespace WpfApp1.CustomControls
                 list.Add(row);
                 currentIndex += step;
             }
-            UserControl1Control._ItemCells = list;
+            UserControlControl._ItemCells = list;
             //Headers
-            if (UserControl1Control._IsGenerateHeaders)
+            if (UserControlControl._IsGenerateHeaders)
             {
                 var columnsHeaders = new List<string>();
-                for (int i = 1; i <= UserControl1Control._ColumnCount; i++)
+                for (int i = 1; i <= UserControlControl._ColumnCount; i++)
                     columnsHeaders.Add(i.ToString("00"));
-                UserControl1Control._ColumnsHeaders = columnsHeaders.ToArray();
+                UserControlControl._ColumnsHeaders = columnsHeaders.ToArray();
 
                 var rowsHeaders = "";
-                for (int i = 0; i < UserControl1Control._RowCount; i++)
+                for (int i = 0; i < UserControlControl._RowCount; i++)
                 {
                     var c = (char)(65 + i);
                     rowsHeaders += c;
                 }
-                UserControl1Control._RowsHeaders = rowsHeaders;
+                UserControlControl._RowsHeaders = rowsHeaders;
             }
             else
             {
-                UserControl1Control._ColumnsHeaders = null;
-                UserControl1Control._RowsHeaders = null;
+                UserControlControl._ColumnsHeaders = null;
+                UserControlControl._RowsHeaders = null;
             }
 
-            UserControl1Control.On_ItemsChanged(e);
+            UserControlControl.On_ItemsChanged(e);
         }
 
         private void On_ItemsChanged(DependencyPropertyChangedEventArgs e)
@@ -305,5 +308,22 @@ namespace WpfApp1.CustomControls
 
         }
         #endregion
+        //Commands
+        public ICommand _CommandSelectAll => new RelayCommand(a => SelectAll());
+        public ICommand _CommandSelectColumn => new RelayCommand(a => SelectColumn(a));
+
+        private void SelectColumn(object a)
+        {
+            
+        }
+
+        private void SelectAll()
+        {
+            var allIsSelected = this._Items.All(q => ((Cell)q).IsSelected == true);
+            if(allIsSelected)
+                this._Items.Select(q => ((Cell)q).IsSelected = false).ToArray();
+            else
+                this._Items.Select(q => ((Cell)q).IsSelected = true).ToArray();
+        }
     }
 }
