@@ -308,13 +308,20 @@ namespace WpfApp1.CustomControls
 
         }
         #endregion
+
         //Commands
         public ICommand _CommandSelectAll => new RelayCommand(a => SelectAll());
-        public ICommand _CommandSelectColumn => new RelayCommand(a => SelectColumn(a));
+        public ICommand _CommandSelectColumn => new RelayCommand(a => SelectColumn());
+        public ICommand _CommandSelectRow => new RelayCommand(a => SelectRow());
 
-        private void SelectColumn(object a)
+        private void SelectRow()
         {
-            
+
+        }
+
+        private void SelectColumn()
+        {
+           
         }
 
         private void SelectAll()
