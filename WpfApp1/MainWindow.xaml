@@ -27,7 +27,8 @@
                                  _RowCount="{Binding Rows}" 
                                  _ColumnCount="{Binding Columns}"  
                                  _Items="{Binding ReactionBlock}"
-                                 _IsGenerateHeaders="True">
+                                 _IsGenerateHeaders="True"
+                                 _SelectAllIcon="SelectAll">
             <control:MyCustomControl._Style_ItemTemplate>
                 <DataTemplate>
                     <Grid>
@@ -54,16 +55,6 @@
                     </TextBlock>
                 </DataTemplate>
             </control:MyCustomControl._Style_HeaderTemplate>
-            <control:MyCustomControl._Style_SelectAllTemplate>
-                <Label Content="SelectAll">
-                    <Label.InputBindings>
-                        <MouseBinding 
-                                Command="{Binding DataContext.SelectAllCommand, RelativeSource={RelativeSource AncestorType=UserControl}}" 
-                                MouseAction="LeftClick" 
-                                CommandParameter="{Binding}"/>
-                    </Label.InputBindings>
-                </Label>
-            </control:MyCustomControl._Style_SelectAllTemplate>
         </control:MyCustomControl>
 
     </Grid>

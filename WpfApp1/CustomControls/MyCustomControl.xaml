@@ -19,8 +19,8 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Label Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5"
-               Content="{Binding _Style_SelectAllTemplate, ElementName=uc}"></Label>
-            <!--Заголовки строк-->
+               Content="{Binding _SelectAllIcon, ElementName=uc}"/>
+        <!--Заголовки строк-->
         <ItemsControl Grid.Row="1" Grid.Column="0" Grid.RowSpan="2" ItemsSource="{Binding _RowsHeaders, ElementName=uc}" 
                           ItemTemplate="{Binding _Style_HeaderTemplate, ElementName=uc}">
             <ItemsControl.ItemsPanel>

@@ -9,6 +9,30 @@ namespace WpfApp1.CustomControls
 {
     public partial class MyCustomControl
     {
+        //Select all Icon
+        #region _SelectAllIcon
+        public static readonly DependencyProperty _SelectAllIconProperty =
+       DependencyProperty.Register("_SelectAllIcon", typeof(string), typeof(MyCustomControl), new
+          PropertyMetadata("", new PropertyChangedCallback(On_SelectAllIconChanged)));
+
+        public string _SelectAllIcon
+        {
+            get { return (string)GetValue(_SelectAllIconProperty); }
+            set { SetValue(_SelectAllIconProperty, value); }
+        }
+
+        private static void On_SelectAllIconChanged(DependencyObject d,
+           DependencyPropertyChangedEventArgs e)
+        {
+            MyCustomControl UserControl1Control = d as MyCustomControl;
+            UserControl1Control.On_SelectAllIconChanged(e);
+        }
+
+        private void On_SelectAllIconChanged(DependencyPropertyChangedEventArgs e)
+        {
+            //tbTest.Text = e.NewValue.ToString();
+        }
+        #endregion
         //Headers
         #region _IsGenerateHeaders
         public static readonly DependencyProperty _IsGenerateHeadersProperty =
@@ -276,23 +300,6 @@ namespace WpfApp1.CustomControls
         }
 
         private static void On__Style_HeaderTemplateChanged(DependencyObject d,
-           DependencyPropertyChangedEventArgs e)
-        {
-
-        }
-        #endregion
-        #region _Style_SelectAllTemplate
-        public static readonly DependencyProperty _Style_SelectAllTemplateProperty =
-       DependencyProperty.Register("_Style_SelectAllTemplate", typeof(Label), typeof(MyCustomControl), new
-          PropertyMetadata(null, new PropertyChangedCallback(On__Style_SelectAllTemplateChanged)));
-
-        public Label _Style_SelectAllTemplate
-        {
-            get { return (Label)GetValue(_Style_SelectAllTemplateProperty); }
-            set { SetValue(_Style_SelectAllTemplateProperty, value); }
-        }
-
-        private static void On__Style_SelectAllTemplateChanged(DependencyObject d,
            DependencyPropertyChangedEventArgs e)
         {
 
