@@ -9,7 +9,6 @@
         xmlns:control ="clr-namespace:WpfApp1.CustomControls">
     <Window.InputBindings>
         <KeyBinding Key="F5" Command="{Binding NewGameCommand}"/>
-        <KeyBinding Modifiers="Ctrl"  Key="A" Command="{Binding SelectAllCommand}"/>
     </Window.InputBindings>
     <Grid>
         <Grid.RowDefinitions>

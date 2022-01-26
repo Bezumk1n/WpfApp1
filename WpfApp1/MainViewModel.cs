@@ -7,17 +7,18 @@ namespace WpfApp1
 {
     public class MainViewModel : NotifyPropertyChanged
     {
-
-        private List<Cell> _reactionBlock = new List<Cell>();
-
         private int _Columns = 12;
         public int Columns
         {
             get => _Columns;
             set
             {
-                _Columns = value;
-                OnPropertyChanged();
+                if (value != null)
+                {
+                    _Columns = value;
+                    OnPropertyChanged();
+                    CreateReactionBlock();
+                }
             }
         }
 
@@ -27,33 +28,16 @@ namespace WpfApp1
             get => _Rows;
             set
             {
-                _Rows = value;
-                OnPropertyChanged();
+                if (value != null)
+                {
+                    _Rows = value;
+                    OnPropertyChanged();
+                    CreateReactionBlock();
+                }
             }
         }
        
-        private IEnumerable<char> _RowsHeaders;
-        public IEnumerable<char> RowsHeaders
-        {
-            get => _RowsHeaders;
-            set
-            {
-                _RowsHeaders = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private IEnumerable<string> _ColumnsHeaders;
-        public IEnumerable<string> ColumnsHeaders
-        {
-            get => _ColumnsHeaders;
-            set
-            {
-                _ColumnsHeaders = value;
-                OnPropertyChanged();
-            }
-        }
-      
+        private List<Cell> _reactionBlock = new List<Cell>();
         public List<Cell> ReactionBlock
         {
             get => _reactionBlock;
@@ -63,19 +47,9 @@ namespace WpfApp1
                 OnPropertyChanged();
             }
         }
-
         
         public ICommand NewGameCommand { get; private set; } 
         public ICommand ClickOnHeaderCommand { get; private set; } 
-        public ICommand SelectAllCommand { get; private set; } 
-       
-
-        private void NewReactionBlock()
-        {
-            CreateReactionBlock();
-            SetColumnsHeaders();
-            SetRowsHeaders();
-        }
 
         private void CreateReactionBlock()
         {
@@ -89,40 +63,12 @@ namespace WpfApp1
             ReactionBlock = rb;
         }
 
-        private void SetColumnsHeaders()
-        {
-            var columnsHeaders = new List<string>();
-            for (int i = 1; i <= Columns; i++)
-                columnsHeaders.Add(i.ToString("00"));
-            ColumnsHeaders = columnsHeaders.ToArray();
-        }
-
-        private void SetRowsHeaders()
-        {
-            var rowsHeaders = "";
-            for (int i = 0; i < Rows; i++)
-            {
-                var c = (char)(65 + i);
-                rowsHeaders += c;
-            }
-            RowsHeaders = rowsHeaders;
-        }
-
         public MainViewModel()
         {
-            NewReactionBlock();
+            CreateReactionBlock();
 
-            NewGameCommand = new RelayCommand(a => NewReactionBlock());
+            NewGameCommand = new RelayCommand(a => CreateReactionBlock());
             ClickOnHeaderCommand = new RelayCommand(a => ClickOnHeader(a));
-            SelectAllCommand = new RelayCommand(a => SelectAll());
-        }
-
-        private void SelectAll()
-        {
-            if (ReactionBlock.All(q => q.IsSelected))
-                ReactionBlock.Select(q => q.IsSelected = false).ToList();
-            else
-                ReactionBlock.Select(q => q.IsSelected = true).ToList();
         }
 
         private void ClickOnHeader(object a)
