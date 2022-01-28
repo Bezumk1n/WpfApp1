@@ -109,9 +109,9 @@ namespace WpfApp1.CustomControls
                     Enumerable.Range(1, UserControlControl._ColumnCount)
                     .Select(x => x.ToString("00")).ToList());
 
-                UserControlControl._RowsHeaders = new List<string>(
+                UserControlControl._RowsHeaders = new List<char>(
                     Enumerable.Range(0, UserControlControl._RowCount)
-                    .Select(x => $"{Convert.ToChar(65 + x)}").ToList());
+                    .Select(x => Convert.ToChar(65 + x)).ToList());
             }
             else
             {
@@ -282,8 +282,11 @@ namespace WpfApp1.CustomControls
         //Styles
         #region _Style_ItemTemplate
         public static readonly DependencyProperty _Style_ItemTemplateProperty =
-       DependencyProperty.Register("_Style_ItemTemplate", typeof(DataTemplate), typeof(MyCustomControl), new
-          PropertyMetadata(null, new PropertyChangedCallback(On__Style_ItemTemplateChanged)));
+            DependencyProperty.Register(
+                "_Style_ItemTemplate", 
+                typeof(DataTemplate), 
+                typeof(MyCustomControl), 
+                new PropertyMetadata(null, new PropertyChangedCallback(On_Style_ItemTemplateChanged)));
 
         public DataTemplate _Style_ItemTemplate
         {
@@ -291,7 +294,7 @@ namespace WpfApp1.CustomControls
             set { SetValue(_Style_ItemTemplateProperty, value); }
         }
 
-        private static void On__Style_ItemTemplateChanged(DependencyObject d,
+        private static void On_Style_ItemTemplateChanged(DependencyObject d,
            DependencyPropertyChangedEventArgs e)
         {
          
@@ -299,8 +302,11 @@ namespace WpfApp1.CustomControls
         #endregion
         #region _Style_HeaderTemplate
         public static readonly DependencyProperty _Style_HeaderTemplateProperty =
-       DependencyProperty.Register("_Style_HeaderTemplate", typeof(DataTemplate), typeof(MyCustomControl), new
-          PropertyMetadata(null, new PropertyChangedCallback(On_Style_HeaderTemplateChanged)));
+            DependencyProperty.Register(
+                "_Style_HeaderTemplate", 
+                typeof(DataTemplate), 
+                typeof(MyCustomControl), 
+                new PropertyMetadata(null, new PropertyChangedCallback(On_Style_HeaderTemplateChanged)));
 
         public DataTemplate _Style_HeaderTemplate
         {
@@ -323,7 +329,7 @@ namespace WpfApp1.CustomControls
 
         private void SelectRow(object row)
         {
-            var r = ((char)row - 65) + 1;
+            var r = (char)row - 65 + 1;
             _Items.Where(q => ((Cell)q).Row == r).Select(q => ((Cell)q).IsSelected = true).ToList();
         }
 

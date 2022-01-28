@@ -46,7 +46,13 @@ namespace WpfApp1
             }
         }
         
-        public ICommand NewGameCommand { get; private set; } 
+        public ICommand NewReactionBlockCommand { get; private set; } 
+        public MainViewModel()
+        {
+            CreateReactionBlock();
+
+            NewReactionBlockCommand = new RelayCommand(a => CreateReactionBlock());
+        }
 
         private void CreateReactionBlock()
         {
@@ -60,27 +66,5 @@ namespace WpfApp1
             ReactionBlock = list;
         }
 
-        public MainViewModel()
-        {
-            CreateReactionBlock();
-
-            NewGameCommand = new RelayCommand(a => CreateReactionBlock());
-        }
-
-        private void ClickOnHeader(object a)
-        {
-            var type = a.GetType();
-
-            if (type == typeof(string))
-            {
-                var column = int.Parse(a.ToString());
-                ReactionBlock.Where(q=>q.Column == column).Select(q => q.IsSelected = true).ToList();
-            }
-            else
-            { 
-                var row = ((char)a - 65) + 1;
-                ReactionBlock.Where(q => q.Row == row).Select(q => q.IsSelected = true).ToList();
-            }
-        }
     }  
 }

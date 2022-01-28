@@ -8,7 +8,7 @@
         Title="MainWindow" 
         xmlns:control ="clr-namespace:WpfApp1.CustomControls">
     <Window.InputBindings>
-        <KeyBinding Key="F5" Command="{Binding NewGameCommand}"/>
+        <KeyBinding Key="F5" Command="{Binding NewReactionBlockCommand}"/>
     </Window.InputBindings>
     <Grid>
         <Grid.RowDefinitions>
@@ -17,7 +17,7 @@
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal" Grid.Row="0">
 
-            <Button Margin="5" Padding="15,0" Command="{Binding NewGameCommand}" Content="New"/>
+            <Button Margin="5" Padding="15,0" Command="{Binding NewReactionBlockCommand}" Content="New"/>
             <TextBox Margin="5" Text="{Binding Rows}" FontSize="20"  FontWeight="Bold"/>
             <TextBox Margin="5" Text="{Binding Columns}" FontSize="20" FontWeight="Bold"/>
         </StackPanel>
