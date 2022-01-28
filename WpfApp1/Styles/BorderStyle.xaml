@@ -5,12 +5,10 @@
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="BorderBrush" Value="LightBlue"/>
         <Setter Property="Background" Value="AliceBlue"/>
-        <Setter Property="MinHeight" Value="30"/>
-        <Setter Property="MinWidth" Value="30"/>
         <Style.Triggers>
             <DataTrigger Binding="{Binding IsSelected}" Value="True">
-                <Setter Property="BorderBrush" Value="Blue"/>
-                <Setter Property="Background" Value="DodgerBlue"/>
+                <Setter Property="BorderBrush" Value="SeaGreen"/>
+                <Setter Property="Background" Value="LightSeaGreen"/>
             </DataTrigger>
             <!--<DataTrigger Binding="{Binding State}" Value="Food">
                 <Setter Property="BorderBrush" Value="Red"/>

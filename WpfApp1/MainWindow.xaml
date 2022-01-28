@@ -25,9 +25,8 @@
         <control:MyCustomControl Grid.Row="1"
                                  _RowCount="{Binding Rows}" 
                                  _ColumnCount="{Binding Columns}"  
-                                 _Items="{Binding ReactionBlock}"
-                                 _IsGenerateHeaders="True"
-                                 _SelectAllIcon="SelectAll">
+                                 _Items="{Binding ReactionBlockItems}"
+                                 _IsGenerateHeaders="True">
             <!--<control:MyCustomControl._Style_ItemTemplate>
                 <DataTemplate>
                     <Grid>

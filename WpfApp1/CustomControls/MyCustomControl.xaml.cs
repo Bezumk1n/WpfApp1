@@ -22,6 +22,7 @@ namespace WpfApp1.CustomControls
         public MyCustomControl()
         {
             InitializeComponent();
+            SetCommands();
         }
     }
 }

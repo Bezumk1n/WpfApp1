@@ -35,13 +35,13 @@ namespace WpfApp1
             }
         }
        
-        private List<Cell> _reactionBlock = new List<Cell>();
-        public List<Cell> ReactionBlock
+        private List<Cell> _reactionBlockItems = new List<Cell>();
+        public List<Cell> ReactionBlockItems
         {
-            get => _reactionBlock;
+            get => _reactionBlockItems;
             set
             {
-                _reactionBlock = value;
+                _reactionBlockItems = value;
                 OnPropertyChanged();
             }
         }
@@ -63,7 +63,7 @@ namespace WpfApp1
                 for (int j = 0; j < Columns; j++)
                     list.Add(new Cell() { Index = index++, Row = i + 1, Column = j + 1 });
             }
-            ReactionBlock = list;
+            ReactionBlockItems = list;
         }
 
     }  

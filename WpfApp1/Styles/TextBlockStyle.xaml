@@ -1,15 +1,18 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Style x:Key="ReactionBlock_HeaderBase" TargetType="{x:Type TextBlock}">
+        <Setter Property="Foreground" Value="LightSeaGreen"/>
+        <Setter Property="FontSize" Value="30"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
     <Style x:Key="ReactionBlock_Cell" TargetType="{x:Type TextBlock}">
         <Setter Property="HorizontalAlignment" Value="Left"/>
     </Style>
-    <Style x:Key="ReactionBlock_Header" TargetType="{x:Type TextBlock}">
-        <Setter Property="HorizontalAlignment" Value="Center"/>
-        <Setter Property="VerticalAlignment" Value="Center"/>
+    <Style x:Key="ReactionBlock_Header" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource ReactionBlock_HeaderBase}">
         <Setter Property="Margin" Value="5"/>
         <Setter Property="Padding" Value="2"/>
         <Setter Property="FontSize" Value="14"/>
         <Setter Property="FontWeight" Value="DemiBold"/>
-        <Setter Property="Foreground" Value="DodgerBlue"/>
     </Style>
 </ResourceDictionary>

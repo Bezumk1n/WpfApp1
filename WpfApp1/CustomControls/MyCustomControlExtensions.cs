@@ -84,7 +84,7 @@ namespace WpfApp1.CustomControls
             //var step = UserControlControl._ColumnCount;
             //if (step <= 0)
             //    return;
-            var items = (IEnumerable<object>)e.NewValue;
+            //var items = (IEnumerable<object>)e.NewValue;
             //var count = items.Count();
             //var currentIndex = 0;
             //var list = new List<List<object>>();
@@ -101,7 +101,7 @@ namespace WpfApp1.CustomControls
             //    list.Add(row);
             //    currentIndex += step;
             //}
-            UserControlControl._ItemCells = items;
+            UserControlControl._ItemCells = e.NewValue;
             //Headers
             if (UserControlControl._IsGenerateHeaders)
             {
@@ -124,20 +124,20 @@ namespace WpfApp1.CustomControls
 
         private void On_ItemsChanged(DependencyPropertyChangedEventArgs e)
         {
-            //tbTest.Text = e.NewValue.ToString();
+            
         }
         #endregion
         #region _ItemCells
         public static readonly DependencyProperty _ItemCellsProperty =
             DependencyProperty.Register(
                 "_ItemCells",
-                typeof(IEnumerable<object>),
+                typeof(object),
                 typeof(MyCustomControl),
                 new PropertyMetadata(null, new PropertyChangedCallback(On_ItemCellsChanged)));
 
-        public IEnumerable<object> _ItemCells
+        public object _ItemCells
         {
-            get { return (IEnumerable<object>)GetValue(_ItemCellsProperty); }
+            get { return (object)GetValue(_ItemCellsProperty); }
             private set { SetValue(_ItemCellsProperty, value); }
         }
         private static void On_ItemCellsChanged(DependencyObject d,
@@ -176,33 +176,6 @@ namespace WpfApp1.CustomControls
         private void On_IsGenerateCellIndexChanged(DependencyPropertyChangedEventArgs e)
         {
 
-        }
-        #endregion
-        //Select all Icon
-        #region _SelectAllIcon
-        public static readonly DependencyProperty _SelectAllIconProperty = 
-            DependencyProperty.Register(
-                "_SelectAllIcon",
-                typeof(string), 
-                typeof(MyCustomControl), 
-                new PropertyMetadata("", new PropertyChangedCallback(On_SelectAllIconChanged)));
-
-        public string _SelectAllIcon
-        {
-            get { return (string)GetValue(_SelectAllIconProperty); }
-            set { SetValue(_SelectAllIconProperty, value); }
-        }
-
-        private static void On_SelectAllIconChanged(DependencyObject d,
-           DependencyPropertyChangedEventArgs e)
-        {
-            MyCustomControl UserControl1Control = d as MyCustomControl;
-            UserControl1Control.On_SelectAllIconChanged(e);
-        }
-
-        private void On_SelectAllIconChanged(DependencyPropertyChangedEventArgs e)
-        {
-            
         }
         #endregion
         //Headers
@@ -276,7 +249,6 @@ namespace WpfApp1.CustomControls
 
         private void On_RowsHeadersChanged(DependencyPropertyChangedEventArgs e)
         {
-            //tbTest.Text = e.NewValue.ToString();
         }
         #endregion
         //Styles
@@ -323,9 +295,15 @@ namespace WpfApp1.CustomControls
 
         //Commands
         #region Commands
-        public ICommand _CommandSelectAll => new RelayCommand(a => SelectAll());
-        public ICommand _CommandSelectColumn => new RelayCommand(a => SelectColumn(a));
-        public ICommand _CommandSelectRow => new RelayCommand(a => SelectRow(a));
+        private void SetCommands()
+        {
+            _CommandSelectAll = new RelayCommand(a => SelectAll(a));
+            _CommandSelectColumn = new RelayCommand(a => SelectColumn(a));
+            _CommandSelectRow = new RelayCommand(a => SelectRow(a));
+        }
+        public ICommand _CommandSelectAll { get; private set; }
+        public ICommand _CommandSelectColumn { get; private set; }
+        public ICommand _CommandSelectRow { get; private set; }
 
         private void SelectRow(object row)
         {
@@ -339,13 +317,13 @@ namespace WpfApp1.CustomControls
             _Items.Where(q => ((Cell)q).Column == c).Select(q => ((Cell)q).IsSelected = true).ToList();
         }
 
-        private void SelectAll()
+        private void SelectAll(object a)
         {
-            var allIsSelected = this._Items.All(q => ((Cell)q).IsSelected == true);
+            var allIsSelected = _Items.All(q => ((Cell)q).IsSelected == true);
             if(allIsSelected)
-                this._Items.Select(q => ((Cell)q).IsSelected = false).ToArray();
+                _Items.Select(q => ((Cell)q).IsSelected = false).ToArray();
             else
-                this._Items.Select(q => ((Cell)q).IsSelected = true).ToArray();
+                _Items.Select(q => ((Cell)q).IsSelected = true).ToArray();
         }
         #endregion
     }
