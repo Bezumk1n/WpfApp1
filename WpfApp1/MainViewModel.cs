@@ -17,7 +17,6 @@ namespace WpfApp1
                 {
                     _Columns = value;
                     OnPropertyChanged();
-                    CreateReactionBlock();
                 }
             }
         }
@@ -32,7 +31,6 @@ namespace WpfApp1
                 {
                     _Rows = value;
                     OnPropertyChanged();
-                    CreateReactionBlock();
                 }
             }
         }
@@ -49,18 +47,17 @@ namespace WpfApp1
         }
         
         public ICommand NewGameCommand { get; private set; } 
-        public ICommand ClickOnHeaderCommand { get; private set; } 
 
         private void CreateReactionBlock()
         {
-            var rb = new List<Cell>();
+            var list = new List<Cell>();
             var index = 0;
             for (int i = 0; i < Rows; i++)
             {
                 for (int j = 0; j < Columns; j++)
-                    rb.Add(new Cell() { Index = index++, Row = i + 1, Column = j + 1 });
+                    list.Add(new Cell() { Index = index++, Row = i + 1, Column = j + 1 });
             }
-            ReactionBlock = rb;
+            ReactionBlock = list;
         }
 
         public MainViewModel()
@@ -68,7 +65,6 @@ namespace WpfApp1
             CreateReactionBlock();
 
             NewGameCommand = new RelayCommand(a => CreateReactionBlock());
-            ClickOnHeaderCommand = new RelayCommand(a => ClickOnHeader(a));
         }
 
         private void ClickOnHeader(object a)

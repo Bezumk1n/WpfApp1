@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Windows;
@@ -10,13 +11,181 @@ namespace WpfApp1.CustomControls
 {
     public partial class MyCustomControl
     {
+        //Reaction plate
+        #region _RowCount
+        public static readonly DependencyProperty _RowCountProperty =
+            DependencyProperty.Register(
+                "_RowCount",
+                typeof(int),
+                typeof(MyCustomControl),
+                new PropertyMetadata(0, new PropertyChangedCallback(On_RowCountChanged)));
+
+        public int _RowCount
+        {
+            get { return (int)GetValue(_RowCountProperty); }
+            set { SetValue(_RowCountProperty, value); }
+        }
+
+        private static void On_RowCountChanged(DependencyObject d,
+           DependencyPropertyChangedEventArgs e)
+        {
+            MyCustomControl UserControl1Control = d as MyCustomControl;
+            UserControl1Control.On_RowCountChanged(e);
+        }
+
+        private void On_RowCountChanged(DependencyPropertyChangedEventArgs e)
+        {
+
+        }
+        #endregion
+        #region _ColumnCount
+        public static readonly DependencyProperty _ColumnCountProperty =
+            DependencyProperty.Register(
+                "_ColumnCount",
+                typeof(int),
+                typeof(MyCustomControl),
+                new PropertyMetadata(0, new PropertyChangedCallback(On_ColumnCountChanged)));
+
+        public int _ColumnCount
+        {
+            get { return (int)GetValue(_ColumnCountProperty); }
+            set { SetValue(_ColumnCountProperty, value); }
+        }
+
+        private static void On_ColumnCountChanged(DependencyObject d,
+           DependencyPropertyChangedEventArgs e)
+        {
+            MyCustomControl UserControl1Control = d as MyCustomControl;
+            UserControl1Control.On_ColumnCountChanged(e);
+        }
+
+        private void On_ColumnCountChanged(DependencyPropertyChangedEventArgs e)
+        {
+
+        }
+        #endregion
+        #region _Items
+        public static readonly DependencyProperty _ItemsProperty =
+            DependencyProperty.Register(
+                "_Items",
+                typeof(IEnumerable<object>),
+                typeof(MyCustomControl),
+                new PropertyMetadata(null, new PropertyChangedCallback(On_ItemsChanged)));
+
+        public IEnumerable<object> _Items
+        {
+            get { return (IEnumerable<object>)GetValue(_ItemsProperty); }
+            set { SetValue(_ItemsProperty, value); }
+        }
+        private static void On_ItemsChanged(DependencyObject d,
+           DependencyPropertyChangedEventArgs e)
+        {
+            MyCustomControl UserControlControl = d as MyCustomControl;
+            //var step = UserControlControl._ColumnCount;
+            //if (step <= 0)
+            //    return;
+            var items = (IEnumerable<object>)e.NewValue;
+            //var count = items.Count();
+            //var currentIndex = 0;
+            //var list = new List<List<object>>();
+
+            //if (UserControlControl._RowCount * UserControlControl._ColumnCount > count)
+            //{
+            //    //throw new Exception("Reaction plate - Invalid cells count");
+            //    return;
+            //}
+            //while (currentIndex < count)
+            //{
+            //    var part = items.Skip(currentIndex).Take(step).ToArray();
+            //    var row = new List<object>(part);
+            //    list.Add(row);
+            //    currentIndex += step;
+            //}
+            UserControlControl._ItemCells = items;
+            //Headers
+            if (UserControlControl._IsGenerateHeaders)
+            {
+                UserControlControl._ColumnsHeaders = new List<string>(
+                    Enumerable.Range(1, UserControlControl._ColumnCount)
+                    .Select(x => x.ToString("00")).ToList());
+
+                UserControlControl._RowsHeaders = new List<string>(
+                    Enumerable.Range(0, UserControlControl._RowCount)
+                    .Select(x => $"{Convert.ToChar(65 + x)}").ToList());
+            }
+            else
+            {
+                UserControlControl._ColumnsHeaders = null;
+                UserControlControl._RowsHeaders = null;
+            }
+
+            UserControlControl.On_ItemsChanged(e);
+        }
+
+        private void On_ItemsChanged(DependencyPropertyChangedEventArgs e)
+        {
+            //tbTest.Text = e.NewValue.ToString();
+        }
+        #endregion
+        #region _ItemCells
+        public static readonly DependencyProperty _ItemCellsProperty =
+            DependencyProperty.Register(
+                "_ItemCells",
+                typeof(IEnumerable<object>),
+                typeof(MyCustomControl),
+                new PropertyMetadata(null, new PropertyChangedCallback(On_ItemCellsChanged)));
+
+        public IEnumerable<object> _ItemCells
+        {
+            get { return (IEnumerable<object>)GetValue(_ItemCellsProperty); }
+            private set { SetValue(_ItemCellsProperty, value); }
+        }
+        private static void On_ItemCellsChanged(DependencyObject d,
+          DependencyPropertyChangedEventArgs e)
+        {
+            MyCustomControl control = d as MyCustomControl;
+            control.On_ItemCellsChanged(e);
+        }
+        private void On_ItemCellsChanged(DependencyPropertyChangedEventArgs e)
+        {
+
+        }
+        #endregion
+        //Index
+        #region _IsGenerateCellIndex
+        public static readonly DependencyProperty _IsGenerateCellIndexProperty =
+            DependencyProperty.Register(
+                "_IsGenerateCellIndex", 
+                typeof(bool), 
+                typeof(MyCustomControl), 
+                new PropertyMetadata(false, new PropertyChangedCallback(On_IsGenerateCellIndexChanged)));
+
+        public bool _IsGenerateCellIndex
+        {
+            get { return (bool)GetValue(_IsGenerateCellIndexProperty); }
+            set { SetValue(_IsGenerateCellIndexProperty, value); }
+        }
+
+        private static void On_IsGenerateCellIndexChanged(DependencyObject d,
+           DependencyPropertyChangedEventArgs e)
+        {
+            MyCustomControl UserControl1Control = d as MyCustomControl;
+            UserControl1Control.On_IsGenerateCellIndexChanged(e);
+        }
+
+        private void On_IsGenerateCellIndexChanged(DependencyPropertyChangedEventArgs e)
+        {
+
+        }
+        #endregion
         //Select all Icon
         #region _SelectAllIcon
-        public static readonly DependencyProperty _SelectAllIconProperty = DependencyProperty.Register(
-            "_SelectAllIcon",
-            typeof(string), 
-            typeof(MyCustomControl), 
-            new PropertyMetadata("", new PropertyChangedCallback(On_SelectAllIconChanged)));
+        public static readonly DependencyProperty _SelectAllIconProperty = 
+            DependencyProperty.Register(
+                "_SelectAllIcon",
+                typeof(string), 
+                typeof(MyCustomControl), 
+                new PropertyMetadata("", new PropertyChangedCallback(On_SelectAllIconChanged)));
 
         public string _SelectAllIcon
         {
@@ -33,7 +202,7 @@ namespace WpfApp1.CustomControls
 
         private void On_SelectAllIconChanged(DependencyPropertyChangedEventArgs e)
         {
-            //tbTest.Text = e.NewValue.ToString();
+            
         }
         #endregion
         //Headers
@@ -62,15 +231,15 @@ namespace WpfApp1.CustomControls
         #endregion
         #region _ColumnsHeaders
         public static readonly DependencyProperty _ColumnsHeadersProperty =
-       DependencyProperty.Register(
-           name: "_ColumnsHeaders",
-          propertyType: typeof(IEnumerable<object>),
-          ownerType: typeof(MyCustomControl),
-          new PropertyMetadata(null, new PropertyChangedCallback(On_ColumnsHeadersChanged)));
+            DependencyProperty.Register(
+                "_ColumnsHeaders",
+                typeof(object),
+                typeof(MyCustomControl),
+                new PropertyMetadata(null, new PropertyChangedCallback(On_ColumnsHeadersChanged)));
 
-        public IEnumerable<object> _ColumnsHeaders
+        public object _ColumnsHeaders
         {
-            get { return (IEnumerable<object>)GetValue(_ColumnsHeadersProperty); }
+            get { return (object)GetValue(_ColumnsHeadersProperty); }
             private set { SetValue(_ColumnsHeadersProperty, value); }
         }
         private static void On_ColumnsHeadersChanged(DependencyObject d,
@@ -82,20 +251,20 @@ namespace WpfApp1.CustomControls
 
         private void On_ColumnsHeadersChanged(DependencyPropertyChangedEventArgs e)
         {
-            //tbTest.Text = e.NewValue.ToString();
+            
         }
         #endregion
         #region _RowsHeaders
         public static readonly DependencyProperty _RowsHeadersProperty =
-       DependencyProperty.Register(
-           name: "_RowsHeaders",
-          propertyType: typeof(IEnumerable<char>),
-          ownerType: typeof(MyCustomControl),
-          new PropertyMetadata(null, new PropertyChangedCallback(On_RowsHeadersChanged)));
+            DependencyProperty.Register(
+                "_RowsHeaders",
+                typeof(object),
+                typeof(MyCustomControl),
+                new PropertyMetadata(null, new PropertyChangedCallback(On_RowsHeadersChanged)));
 
-        public IEnumerable<char> _RowsHeaders
+        public object _RowsHeaders
         {
-            get { return (IEnumerable<char>)GetValue(_RowsHeadersProperty); }
+            get { return (object)GetValue(_RowsHeadersProperty); }
             private set { SetValue(_RowsHeadersProperty, value); }
         }
         private static void On_RowsHeadersChanged(DependencyObject d,
@@ -106,169 +275,6 @@ namespace WpfApp1.CustomControls
         }
 
         private void On_RowsHeadersChanged(DependencyPropertyChangedEventArgs e)
-        {
-            //tbTest.Text = e.NewValue.ToString();
-        }
-        #endregion
-        //Index
-        #region _IsGenerateCellIndex
-        public static readonly DependencyProperty _IsGenerateCellIndexProperty =
-       DependencyProperty.Register("_IsGenerateCellIndex", typeof(bool), typeof(MyCustomControl), new
-          PropertyMetadata(false, new PropertyChangedCallback(On_IsGenerateCellIndexChanged)));
-
-        public bool _IsGenerateCellIndex
-        {
-            get { return (bool)GetValue(_IsGenerateCellIndexProperty); }
-            set { SetValue(_IsGenerateCellIndexProperty, value); }
-        }
-
-        private static void On_IsGenerateCellIndexChanged(DependencyObject d,
-           DependencyPropertyChangedEventArgs e)
-        {
-            MyCustomControl UserControl1Control = d as MyCustomControl;
-            UserControl1Control.On_IsGenerateCellIndexChanged(e);
-        }
-
-        private void On_IsGenerateCellIndexChanged(DependencyPropertyChangedEventArgs e)
-        {
-            //tbTest.Text = e.NewValue.ToString();
-        }
-        #endregion
-        //Reaction plate
-        #region __RowCount
-        public static readonly DependencyProperty _RowCountProperty =
-       DependencyProperty.Register("_RowCount", typeof(int), typeof(MyCustomControl), new
-          PropertyMetadata(0, new PropertyChangedCallback(On_RowCountChanged)));
-
-        public int _RowCount
-        {
-            get { return (int)GetValue(_RowCountProperty); }
-            set { SetValue(_RowCountProperty, value); }
-        }
-
-        private static void On_RowCountChanged(DependencyObject d,
-           DependencyPropertyChangedEventArgs e)
-        {
-            MyCustomControl UserControl1Control = d as MyCustomControl;
-            UserControl1Control.On_RowCountChanged(e);
-        }
-
-        private void On_RowCountChanged(DependencyPropertyChangedEventArgs e)
-        {
-            //tbTest.Text = e.NewValue.ToString();
-        }
-        #endregion
-        #region _ColumnCount
-        public static readonly DependencyProperty _ColumnCountProperty =
-       DependencyProperty.Register("_ColumnCount", typeof(int), typeof(MyCustomControl), new
-          PropertyMetadata(0, new PropertyChangedCallback(On_ColumnCountChanged)));
-
-        public int _ColumnCount
-        {
-            get { return (int)GetValue(_ColumnCountProperty); }
-            set { SetValue(_ColumnCountProperty, value); }
-        }
-
-        private static void On_ColumnCountChanged(DependencyObject d,
-           DependencyPropertyChangedEventArgs e)
-        {
-            MyCustomControl UserControl1Control = d as MyCustomControl;
-            UserControl1Control.On_ColumnCountChanged(e);
-        }
-
-        private void On_ColumnCountChanged(DependencyPropertyChangedEventArgs e)
-        {
-            //tbTest.Text = e.NewValue.ToString();
-        }
-        #endregion
-        #region _Items
-        public static readonly DependencyProperty _ItemsProperty =
-       DependencyProperty.Register(
-           name: "_Items",
-          propertyType: typeof(IEnumerable<object>),
-          ownerType: typeof(MyCustomControl),
-          new PropertyMetadata(null, new PropertyChangedCallback(On_ItemsChanged)));
-
-        public IEnumerable<object> _Items
-        {
-            get { return (IEnumerable<object>)GetValue(_ItemsProperty); }
-            set { SetValue(_ItemsProperty, value); }
-        }
-        private static void On_ItemsChanged(DependencyObject d,
-           DependencyPropertyChangedEventArgs e)
-        {
-            MyCustomControl UserControlControl = d as MyCustomControl;
-            var step = UserControlControl._ColumnCount;
-            if (step <= 0)
-                return;
-            var items = (IEnumerable<object>)e.NewValue;
-            var count = items.Count();
-            var currentIndex = 0;
-            var list = new List<List<object>>();
-
-            if (UserControlControl._RowCount * UserControlControl._ColumnCount > count)
-            {
-                //throw new Exception("Reaction plate - Invalid cells count");
-                return;
-            }
-            while (currentIndex < count)
-            {
-                var part = items.Skip(currentIndex).Take(step).ToArray();
-                var row = new List<object>(part);
-                list.Add(row);
-                currentIndex += step;
-            }
-            UserControlControl._ItemCells = list;
-            //Headers
-            if (UserControlControl._IsGenerateHeaders)
-            {
-                var columnsHeaders = new List<string>();
-                for (int i = 1; i <= UserControlControl._ColumnCount; i++)
-                    columnsHeaders.Add(i.ToString("00"));
-                UserControlControl._ColumnsHeaders = columnsHeaders.ToArray();
-
-                var rowsHeaders = "";
-                for (int i = 0; i < UserControlControl._RowCount; i++)
-                {
-                    var c = (char)(65 + i);
-                    rowsHeaders += c;
-                }
-                UserControlControl._RowsHeaders = rowsHeaders;
-            }
-            else
-            {
-                UserControlControl._ColumnsHeaders = null;
-                UserControlControl._RowsHeaders = null;
-            }
-
-            UserControlControl.On_ItemsChanged(e);
-        }
-
-        private void On_ItemsChanged(DependencyPropertyChangedEventArgs e)
-        {
-            //tbTest.Text = e.NewValue.ToString();
-        }
-        #endregion
-        #region _ItemCells
-        public static readonly DependencyProperty _ItemCellsProperty =
-      DependencyProperty.Register(
-          name: "_ItemCells",
-         propertyType: typeof(IEnumerable<IEnumerable<object>>),
-         ownerType: typeof(MyCustomControl),
-         new PropertyMetadata(null, new PropertyChangedCallback(On_ItemCellsChanged)));
-
-        public IEnumerable<IEnumerable<object>> _ItemCells
-        {
-            get { return (IEnumerable<IEnumerable<object>>)GetValue(_ItemCellsProperty); }
-            private set { SetValue(_ItemCellsProperty, value); }
-        }
-        private static void On_ItemCellsChanged(DependencyObject d,
-          DependencyPropertyChangedEventArgs e)
-        {
-            MyCustomControl control = d as MyCustomControl;
-            control.On_ItemsChanged(e);
-        }
-        private void On_ItemCellsChanged(DependencyPropertyChangedEventArgs e)
         {
             //tbTest.Text = e.NewValue.ToString();
         }
@@ -294,7 +300,7 @@ namespace WpfApp1.CustomControls
         #region _Style_HeaderTemplate
         public static readonly DependencyProperty _Style_HeaderTemplateProperty =
        DependencyProperty.Register("_Style_HeaderTemplate", typeof(DataTemplate), typeof(MyCustomControl), new
-          PropertyMetadata(null, new PropertyChangedCallback(On__Style_HeaderTemplateChanged)));
+          PropertyMetadata(null, new PropertyChangedCallback(On_Style_HeaderTemplateChanged)));
 
         public DataTemplate _Style_HeaderTemplate
         {
@@ -302,7 +308,7 @@ namespace WpfApp1.CustomControls
             set { SetValue(_Style_HeaderTemplateProperty, value); }
         }
 
-        private static void On__Style_HeaderTemplateChanged(DependencyObject d,
+        private static void On_Style_HeaderTemplateChanged(DependencyObject d,
            DependencyPropertyChangedEventArgs e)
         {
 
@@ -310,18 +316,21 @@ namespace WpfApp1.CustomControls
         #endregion
 
         //Commands
+        #region Commands
         public ICommand _CommandSelectAll => new RelayCommand(a => SelectAll());
-        public ICommand _CommandSelectColumn => new RelayCommand(a => SelectColumn());
-        public ICommand _CommandSelectRow => new RelayCommand(a => SelectRow());
+        public ICommand _CommandSelectColumn => new RelayCommand(a => SelectColumn(a));
+        public ICommand _CommandSelectRow => new RelayCommand(a => SelectRow(a));
 
-        private void SelectRow()
+        private void SelectRow(object row)
         {
-
+            var r = ((char)row - 65) + 1;
+            _Items.Where(q => ((Cell)q).Row == r).Select(q => ((Cell)q).IsSelected = true).ToList();
         }
 
-        private void SelectColumn()
+        private void SelectColumn(object column)
         {
-           
+            var c = int.Parse(column.ToString());
+            _Items.Where(q => ((Cell)q).Column == c).Select(q => ((Cell)q).IsSelected = true).ToList();
         }
 
         private void SelectAll()
@@ -332,5 +341,6 @@ namespace WpfApp1.CustomControls
             else
                 this._Items.Select(q => ((Cell)q).IsSelected = true).ToArray();
         }
+        #endregion
     }
 }

@@ -11,11 +11,9 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Label Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5"
@@ -23,51 +21,104 @@
             <Label.InputBindings>
                 <MouseBinding
                     Command="{Binding _CommandSelectAll, ElementName=uc}"
-                    MouseAction="LeftClick"/>
+                    MouseAction="LeftClick"
+                    CommandParameter="{Binding}"/>
             </Label.InputBindings>
         </Label>
-        <!--Заголовки строк-->
-        <ItemsControl Grid.Row="1" Grid.Column="0" Grid.RowSpan="2" ItemsSource="{Binding _RowsHeaders, ElementName=uc}" 
+        <!--Заголовки строк--><!--
+        <ItemsControl Grid.Row="1" Grid.Column="0" ItemsSource="{Binding _RowsHeaders, ElementName=uc}" 
                           ItemTemplate="{Binding _Style_HeaderTemplate, ElementName=uc}">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <UniformGrid Columns="1"/>
                 </ItemsPanelTemplate>
             </ItemsControl.ItemsPanel>
-        </ItemsControl>
-        <!--Заголовки столбцов-->
+        </ItemsControl>-->
+        <!--Заголовки столбцов--><!--
         <ItemsControl Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"  ItemsSource="{Binding _ColumnsHeaders, ElementName=uc}"
                           ItemTemplate="{Binding _Style_HeaderTemplate, ElementName=uc}">
-            <ItemsControl.InputBindings>
-                <!--<MouseBinding
-                    Command="{Binding _CommandSelectColumn, ElementName=uc}"
-                    CommandParameter="{Binding}"
-                    MouseAction="LeftClick"/>-->
-            </ItemsControl.InputBindings>
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <UniformGrid Rows="1"/>
                 </ItemsPanelTemplate>
             </ItemsControl.ItemsPanel>
-        </ItemsControl>
-        <!--Реакционный блок-->
-        <ItemsControl ItemsSource="{Binding _ItemCells, ElementName=uc}" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" Grid.RowSpan="2">
+        </ItemsControl>-->
+
+        <!--Заголовки строк-->
+        <ItemsControl Grid.Row="1" Grid.Column="0" ItemsSource="{Binding _RowsHeaders, ElementName=uc}">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <UniformGrid Rows="{Binding _RowCount, ElementName=uc}" />
+                    <UniformGrid Columns="1"/>
                 </ItemsPanelTemplate>
             </ItemsControl.ItemsPanel>
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <ItemsControl ItemsSource="{Binding}" ItemTemplate="{Binding _Style_ItemTemplate, ElementName=uc}">
-                        <ItemsControl.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <UniformGrid Rows="1" />
-                            </ItemsPanelTemplate>
-                        </ItemsControl.ItemsPanel>
-                    </ItemsControl>
+                    <TextBlock Text="{Binding}" Style="{StaticResource ReactionBlock_Header}">
+                        <TextBlock.InputBindings>
+                            <MouseBinding 
+                                Command="{Binding _CommandSelectRow, ElementName=uc}" 
+                                MouseAction="LeftClick" 
+                                CommandParameter="{Binding}"/>
+                        </TextBlock.InputBindings>
+                    </TextBlock>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+        <!--Заголовки столбцов-->
+        <ItemsControl Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"  ItemsSource="{Binding _ColumnsHeaders,  ElementName=uc}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <UniformGrid Rows="1"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding}" Style="{StaticResource ReactionBlock_Header}">
+                        <TextBlock.InputBindings>
+                            <MouseBinding 
+                                Command="{Binding _CommandSelectColumn, ElementName=uc}" 
+                                MouseAction="LeftClick" 
+                                CommandParameter="{Binding}"/>
+                        </TextBlock.InputBindings>
+                    </TextBlock>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+        <!--Реакционный блок-->
+        <ItemsControl ItemsSource="{Binding _ItemCells, ElementName=uc}" Grid.Column="1" Grid.Row="1">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <UniformGrid 
+                        Rows="{Binding _RowCount, ElementName=uc}"
+                        Columns="{Binding _ColumnCount, ElementName=uc}"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Border Style="{StaticResource ReactionBlockBorder}">
+                            <Viewbox HorizontalAlignment="Left">
+                                <StackPanel>
+                                    <TextBlock Text="{Binding Index}" Style="{StaticResource ReactionBlock_Cell}"/>
+                                    <TextBlock Text="{Binding Position}" Style="{StaticResource ReactionBlock_Cell}"/>
+                                </StackPanel>
+                            </Viewbox>
+                        </Border>
+                    </Grid>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
     </Grid>
 </UserControl>
+
+<!--<ItemsControl.ItemTemplate>
+    <DataTemplate>
+        <ItemsControl ItemsSource="{Binding}" ItemTemplate="{Binding _Style_ItemTemplate, ElementName=uc}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <UniformGrid Rows="1" />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+        </ItemsControl>
+    </DataTemplate>
+</ItemsControl.ItemTemplate>-->

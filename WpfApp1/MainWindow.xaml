@@ -28,7 +28,7 @@
                                  _Items="{Binding ReactionBlock}"
                                  _IsGenerateHeaders="True"
                                  _SelectAllIcon="SelectAll">
-            <control:MyCustomControl._Style_ItemTemplate>
+            <!--<control:MyCustomControl._Style_ItemTemplate>
                 <DataTemplate>
                     <Grid>
                         <Border Style="{StaticResource ReactionBlockBorder}">
@@ -41,8 +41,8 @@
                         </Border>
                     </Grid>
                 </DataTemplate>
-            </control:MyCustomControl._Style_ItemTemplate>
-            <control:MyCustomControl._Style_HeaderTemplate>
+            </control:MyCustomControl._Style_ItemTemplate>-->
+            <!--<control:MyCustomControl._Style_HeaderTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding}" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="5" FontSize="14">
                         <TextBlock.InputBindings>
@@ -53,7 +53,7 @@
                         </TextBlock.InputBindings>
                     </TextBlock>
                 </DataTemplate>
-            </control:MyCustomControl._Style_HeaderTemplate>
+            </control:MyCustomControl._Style_HeaderTemplate>-->
         </control:MyCustomControl>
 
     </Grid>
