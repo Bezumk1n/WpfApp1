@@ -101,6 +101,7 @@ namespace WpfApp1.CustomControls
             //    list.Add(row);
             //    currentIndex += step;
             //}
+            //UserControlControl._ItemCells = list;
             UserControlControl._ItemCells = e.NewValue;
             //Headers
             if (UserControlControl._IsGenerateHeaders)
