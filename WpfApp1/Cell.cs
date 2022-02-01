@@ -5,10 +5,10 @@ namespace WpfApp1
 {
     public class Cell : NotifyPropertyChanged
     {
-        public int Index { get; set; }
-        public int Row { get; set; }
-        public int Column { get; set; }
-        public string Position { get; set; }
+        public int Index { get; }
+        public int Row { get; }
+        public int Column { get; }
+        public string Position { get; }
 
         private bool _isSelected;
         public bool IsSelected

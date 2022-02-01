@@ -296,15 +296,16 @@ namespace WpfApp1.CustomControls
 
         //Commands
         #region Commands
+        public ICommand _CommandSelectAll { get; private set; }
+        public ICommand _CommandSelectColumn { get; private set; }
+        public ICommand _CommandSelectRow { get; private set; }
+
         private void SetCommands()
         {
             _CommandSelectAll = new RelayCommand(a => SelectAll(a));
             _CommandSelectColumn = new RelayCommand(a => SelectColumn(a));
             _CommandSelectRow = new RelayCommand(a => SelectRow(a));
         }
-        public ICommand _CommandSelectAll { get; private set; }
-        public ICommand _CommandSelectColumn { get; private set; }
-        public ICommand _CommandSelectRow { get; private set; }
 
         private void SelectRow(object row)
         {
