@@ -8,6 +8,7 @@ namespace WpfApp1
         public int Index { get; set; }
         public int Row { get; set; }
         public int Column { get; set; }
+        public string Position { get; set; }
 
         private bool _isSelected;
         public bool IsSelected
@@ -19,11 +20,13 @@ namespace WpfApp1
                 OnPropertyChanged();
             }
         }
-        public string Position => GetPosition();
 
-        private string GetPosition()
+        public Cell(int index, int row, int column)
         {
-            return $"{Row}, {Column}";
+            Index = index;
+            Row = row;
+            Column = column;
+            Position = $"{row}, {column}";
         }
     }
 }

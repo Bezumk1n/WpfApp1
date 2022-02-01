@@ -27,32 +27,6 @@
                                  _ColumnCount="{Binding Columns}"  
                                  _Items="{Binding ReactionBlockItems}"
                                  _IsGenerateHeaders="True">
-            <!--<control:MyCustomControl._Style_ItemTemplate>
-                <DataTemplate>
-                    <Grid>
-                        <Border Style="{StaticResource ReactionBlockBorder}">
-                            <Viewbox HorizontalAlignment="Left">
-                                <StackPanel>
-                                    <TextBlock Text="{Binding Index}" Style="{StaticResource ReactionBlock_TextBlock}" Padding="3"/>
-                                    <TextBlock Text="{Binding Position}" Style="{StaticResource ReactionBlock_TextBlock}" Padding="3"/>
-                                </StackPanel>
-                            </Viewbox>
-                        </Border>
-                    </Grid>
-                </DataTemplate>
-            </control:MyCustomControl._Style_ItemTemplate>-->
-            <!--<control:MyCustomControl._Style_HeaderTemplate>
-                <DataTemplate>
-                    <TextBlock Text="{Binding}" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="5" FontSize="14">
-                        <TextBlock.InputBindings>
-                            <MouseBinding 
-                                Command="{Binding DataContext.ClickOnHeaderCommand, RelativeSource={RelativeSource AncestorType=UserControl}}" 
-                                MouseAction="LeftClick" 
-                                CommandParameter="{Binding}"/>
-                        </TextBlock.InputBindings>
-                    </TextBlock>
-                </DataTemplate>
-            </control:MyCustomControl._Style_HeaderTemplate>-->
         </control:MyCustomControl>
 
     </Grid>

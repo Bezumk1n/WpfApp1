@@ -15,33 +15,14 @@
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-            <TextBlock Grid.Row="0" Grid.Column="0" Text="▦" Style="{StaticResource ReactionBlock_HeaderBase}">
-                <TextBlock.InputBindings>
-                    <MouseBinding
+        <TextBlock Grid.Row="0" Grid.Column="0" Text="▦" Style="{StaticResource ReactionBlock_HeaderBase}">
+            <TextBlock.InputBindings>
+                <MouseBinding
                     Command="{Binding _CommandSelectAll, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"
                     MouseAction="LeftClick"
                     CommandParameter="{Binding}"/>
-                </TextBlock.InputBindings>
-            </TextBlock>
-        <!--Заголовки строк--><!--
-        <ItemsControl Grid.Row="1" Grid.Column="0" ItemsSource="{Binding _RowsHeaders, ElementName=uc}" 
-                          ItemTemplate="{Binding _Style_HeaderTemplate, ElementName=uc}">
-            <ItemsControl.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <UniformGrid Columns="1"/>
-                </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>
-        </ItemsControl>-->
-        <!--Заголовки столбцов--><!--
-        <ItemsControl Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"  ItemsSource="{Binding _ColumnsHeaders, ElementName=uc}"
-                          ItemTemplate="{Binding _Style_HeaderTemplate, ElementName=uc}">
-            <ItemsControl.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <UniformGrid Rows="1"/>
-                </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>
-        </ItemsControl>-->
-
+            </TextBlock.InputBindings>
+        </TextBlock>
         <!--Заголовки строк-->
         <ItemsControl Grid.Row="1" Grid.Column="0" ItemsSource="{Binding _RowsHeaders, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}">
             <ItemsControl.ItemsPanel>
@@ -108,15 +89,3 @@
         </ItemsControl>
     </Grid>
 </UserControl>
-
-<!--<ItemsControl.ItemTemplate>
-    <DataTemplate>
-        <ItemsControl ItemsSource="{Binding}" ItemTemplate="{Binding _Style_ItemTemplate, ElementName=uc}">
-            <ItemsControl.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <UniformGrid Rows="1" />
-                </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>
-        </ItemsControl>
-    </DataTemplate>
-</ItemsControl.ItemTemplate>-->
