@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace WpfApp1
+namespace WpfApp1.Models
 {
     public class BaseCell : NotifyPropertyChanged
     {

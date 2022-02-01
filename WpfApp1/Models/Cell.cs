@@ -1,7 +1,7 @@
 ﻿
 using System;
 
-namespace WpfApp1
+namespace WpfApp1.Models
 {
     public class Cell : NotifyPropertyChanged
     {
