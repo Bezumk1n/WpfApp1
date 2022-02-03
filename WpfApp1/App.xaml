@@ -9,6 +9,9 @@
                 <ResourceDictionary Source="Styles\BorderStyle.xaml"/>
                 <ResourceDictionary Source="Styles\TextBlockStyle.xaml"/>
                 <ResourceDictionary Source="Styles\TextBoxStyle.xaml"/>
+                <ResourceDictionary>
+                    
+                </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

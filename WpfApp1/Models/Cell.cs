@@ -1,5 +1,6 @@
 ﻿
 using System;
+using WpfApp1.Enums;
 
 namespace WpfApp1.Models
 {
@@ -9,7 +10,29 @@ namespace WpfApp1.Models
         public int Row { get; set; }
         public int Column { get; set; }
         public string Position { get; set; }
-        public string Biomaterial { get; set; }
+        private string _sampleName;
+        public string SampleName
+        {
+            get => _sampleName;
+            set
+            {
+                _sampleName = value;
+                OnPropertyChanged();
+            }
+        }
+        private Biomaterials _biomaterial;
+        public Biomaterials Biomaterial
+        {
+            get => _biomaterial;
+            set
+            {
+                if (_biomaterial != null)
+                { 
+                    _biomaterial = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
 
         private bool _isSelected;
         public bool IsSelected

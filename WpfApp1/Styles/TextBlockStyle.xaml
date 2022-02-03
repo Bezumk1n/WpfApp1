@@ -6,12 +6,23 @@
         <Setter Property="HorizontalAlignment" Value="Center"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
     </Style>
+    <Style x:Key="ReactionBlock_Header" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource ReactionBlock_HeaderBase}">
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="FontWeight" Value="DemiBold"/>
+    </Style>
+    
     <Style x:Key="ReactionBlock_Cell" TargetType="{x:Type TextBlock}">
         <Setter Property="HorizontalAlignment" Value="Left"/>
         <Setter Property="FontWeight" Value="DemiBold"/>
     </Style>
-    <Style x:Key="ReactionBlock_Header" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource ReactionBlock_HeaderBase}">
-        <Setter Property="FontSize" Value="14"/>
-        <Setter Property="FontWeight" Value="DemiBold"/>
+    <Style x:Key="ReactionBlock_CellWithTag" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource ReactionBlock_Cell}">
+        <Style.Triggers>
+            <Trigger Property="Tag" Value="">
+                <Setter Property="Visibility" Value="Hidden"/>
+            </Trigger>
+            <Trigger Property="Tag" Value="{x:Null}">
+                <Setter Property="Visibility" Value="Hidden"/>
+            </Trigger>
+        </Style.Triggers>
     </Style>
 </ResourceDictionary>

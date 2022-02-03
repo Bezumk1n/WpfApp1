@@ -302,12 +302,18 @@ namespace WpfApp1.CustomControls
         public ICommand _CommandSelectAll { get; private set; }
         public ICommand _CommandSelectColumn { get; private set; }
         public ICommand _CommandSelectRow { get; private set; }
+        public ICommand _CommandSelectedBiomaterial { get; private set; }
 
         private void SetCommands()
         {
             _CommandSelectAll = new RelayCommand(a => SelectAll(a));
             _CommandSelectColumn = new RelayCommand(a => SelectColumn(a));
             _CommandSelectRow = new RelayCommand(a => SelectRow(a));
+            _CommandSelectedBiomaterial = new RelayCommand(a => SelectedBiomaterial(a));
+        }
+
+        private void SelectedBiomaterial(object a)
+        {
         }
 
         private void SelectRow(object row)
