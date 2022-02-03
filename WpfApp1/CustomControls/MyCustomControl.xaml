@@ -32,14 +32,16 @@
             </ItemsControl.ItemsPanel>
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <TextBlock Text="{Binding}" Style="{StaticResource ReactionBlock_Header}">
-                        <TextBlock.InputBindings>
-                            <MouseBinding 
+                    <Border Style="{StaticResource ReactionBlockHeaderBorder}">
+                        <TextBlock Text="{Binding}" Style="{StaticResource ReactionBlock_Header}">
+                            <TextBlock.InputBindings>
+                                <MouseBinding 
                                 Command="{Binding _CommandSelectRow, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}" 
                                 MouseAction="LeftClick" 
                                 CommandParameter="{Binding}"/>
-                        </TextBlock.InputBindings>
-                    </TextBlock>
+                            </TextBlock.InputBindings>
+                        </TextBlock>
+                    </Border>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
@@ -52,14 +54,16 @@
             </ItemsControl.ItemsPanel>
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <TextBlock Text="{Binding}" Style="{StaticResource ReactionBlock_Header}">
-                        <TextBlock.InputBindings>
-                            <MouseBinding 
+                    <Border Style="{StaticResource ReactionBlockHeaderBorder}">
+                        <TextBlock Text="{Binding}" Style="{StaticResource ReactionBlock_Header}">
+                            <TextBlock.InputBindings>
+                                <MouseBinding 
                                 Command="{Binding _CommandSelectColumn, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}" 
                                 MouseAction="LeftClick" 
                                 CommandParameter="{Binding}"/>
-                        </TextBlock.InputBindings>
-                    </TextBlock>
+                            </TextBlock.InputBindings>
+                        </TextBlock>
+                    </Border>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>

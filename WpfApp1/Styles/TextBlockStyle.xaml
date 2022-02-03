@@ -10,8 +10,6 @@
         <Setter Property="HorizontalAlignment" Value="Left"/>
     </Style>
     <Style x:Key="ReactionBlock_Header" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource ReactionBlock_HeaderBase}">
-        <Setter Property="Margin" Value="5"/>
-        <Setter Property="Padding" Value="2"/>
         <Setter Property="FontSize" Value="14"/>
         <Setter Property="FontWeight" Value="DemiBold"/>
     </Style>
