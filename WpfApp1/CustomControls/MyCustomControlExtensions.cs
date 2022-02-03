@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -10,7 +12,7 @@ using WpfApp1.Models;
 
 namespace WpfApp1.CustomControls
 {
-    public partial class MyCustomControl
+    public partial class MyCustomControl : INotifyPropertyChanged
     {
         //Reaction plate
         #region _RowCount
@@ -327,6 +329,15 @@ namespace WpfApp1.CustomControls
                 _Items.Select(q => ((Cell)q).IsSelected = false).ToArray();
             else
                 _Items.Select(q => ((Cell)q).IsSelected = true).ToArray();
+        }
+        #endregion
+
+        #region INotifyPropertyChanged
+        public event PropertyChangedEventHandler? PropertyChanged;
+
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
         #endregion
     }

@@ -8,6 +8,7 @@
     </Style>
     <Style x:Key="ReactionBlock_Cell" TargetType="{x:Type TextBlock}">
         <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="FontWeight" Value="DemiBold"/>
     </Style>
     <Style x:Key="ReactionBlock_Header" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource ReactionBlock_HeaderBase}">
         <Setter Property="FontSize" Value="14"/>

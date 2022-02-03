@@ -80,12 +80,18 @@
                 <DataTemplate>
                     <Grid>
                         <Border Style="{StaticResource ReactionBlockBorder}">
-                            <Viewbox HorizontalAlignment="Left">
-                                <StackPanel>
-                                    <TextBlock Text="{Binding Index}" Style="{StaticResource ReactionBlock_Cell}"/>
-                                    <TextBlock Text="{Binding Position}" Style="{StaticResource ReactionBlock_Cell}"/>
-                                </StackPanel>
-                            </Viewbox>
+                            <!--<Viewbox HorizontalAlignment="Left">-->
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <TextBlock Grid.Row="0" Text="{Binding Index}" Style="{StaticResource ReactionBlock_Cell}"/>
+                                <TextBlock Grid.Row="1" Text="{Binding Position}" Style="{StaticResource ReactionBlock_Cell}"/>
+                                <TextBox Grid.Row="2" Text="{Binding Biomaterial}" Style="{StaticResource ReactionBlock_CellTextBox}" Tag="Place for Biomaterial Name"/>
+                            </Grid>
+                            <!--</Viewbox>-->
                         </Border>
                     </Grid>
                 </DataTemplate>

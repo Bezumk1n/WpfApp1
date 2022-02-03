@@ -62,7 +62,7 @@ namespace WpfApp1
             for (int i = 0; i < Rows; i++)
             {
                 for (int j = 0; j < Columns; j++)
-                    list.Add(new Cell(index++, i + 1, j + 1));
+                    list.Add(new Cell().CreateCell(index: index++, row: i + 1, column: j + 1));
             }
             ReactionBlockItems = list;
         }
