@@ -4,9 +4,10 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WpfApp1.CustomControls" 
-             xmlns:x1="clr-namespace:WpfApp1.Converters"
+             xmlns:converters="clr-namespace:WpfApp1.Converters"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800"
+             xmlns:bindingHelper="clr-namespace:WpfApp1.Helpers">
     <Grid ShowGridLines="false">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -80,9 +81,13 @@
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
                     <Border Style="{StaticResource ReactionBlockBorder}">
-                        <Grid Tag="{Binding DataContext, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}">
+                        <Border.Resources>
+                            <bindingHelper:BindingProxy x:Key="Proxy" Data="{Binding RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}" />
+                        </Border.Resources>
+                        <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="*"/>
+                                <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
@@ -90,31 +95,27 @@
                                 Grid.Row="0" 
                                 Text="{Binding SampleName, UpdateSourceTrigger=PropertyChanged}" 
                                 Style="{StaticResource ReactionBlock_CellTextBox}" 
-                                Tag="Place for Biomaterial Name"/>
-                            <!--<ComboBox 
+                                Tag="Place for Sample Name"/>
+                            <ComboBox 
                                 Grid.Row="1" 
-                                ItemsSource="{Binding Path=Biomaterial, Converter={x1:EnumToCollectionConverter}}"
+                                ItemsSource="{Binding Path=BiomaterialsEnum, Converter={converters:EnumToCollectionConverter}, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"
+                                SelectedValue="{Binding Biomaterial}"
                                 SelectedValuePath="Value"
-                                DisplayMemberPath="Description"/>-->
+                                DisplayMemberPath="Description"/>
                             <TextBlock Grid.Row="2" Text="Методика" Tag="{Binding SampleName}" Style="{StaticResource ReactionBlock_CellWithTag}"/>
+                            <TextBlock Grid.Row="3" Text="Методика" Tag="{Binding SampleName}" Style="{StaticResource ReactionBlock_CellWithTag}"/>
                         </Grid>
                         <Border.ContextMenu>
-                            <!--<ContextMenu>
-                                    <MenuItem 
-                                    Header="Available biomaterials"
-                                    ItemsSource="{Binding Biomaterial, Converter={x1:EnumToCollectionConverter}}"
-                                    DisplayMemberPath="Description"
-                                    Command="{Binding PlacementTarget.Tag._CommandSelectedBiomaterial, RelativeSource={RelativeSource AncestorType={x:Type ContextMenu}}}"
-                                    CommandParameter="{Binding}">
-                                    </MenuItem>
-                                </ContextMenu>-->
-                            <ContextMenu>
-                                <MenuItem Click="MenuItem_Click"
-                                    Header="Available biomaterials"
-                                    DataContext="{Binding PlacementTarget.Tag, RelativeSource={RelativeSource AncestorType={x:Type ContextMenu}}}"
-                                    Command="{Binding _CommandSelectedBiomaterial, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"
-                                    CommandParameter="{Binding}">
-                                </MenuItem>
+                            <ContextMenu 
+                                    ItemsSource="{Binding Data.BiomaterialsEnum, Converter={converters:EnumToCollectionConverter}, Source={StaticResource Proxy}}"
+                                    DisplayMemberPath="Description">
+                                <ContextMenu.ItemContainerStyle>
+                                    <Style TargetType="MenuItem">
+                                        <Setter Property="Command" Value="{Binding Path=Data._CommandSelectedBiomaterial, Source={StaticResource Proxy}}"/>
+                                        <!--<Setter Property="CommandParameter" Value="{Binding DataContext, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"/>-->
+                                        <Setter Property="CommandParameter" Value="{Binding}"/>
+                                    </Style>
+                                </ContextMenu.ItemContainerStyle>
                             </ContextMenu>
                         </Border.ContextMenu>
                     </Border>

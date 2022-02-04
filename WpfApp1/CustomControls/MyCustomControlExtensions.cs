@@ -8,12 +8,23 @@ using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using WpfApp1.Enums;
 using WpfApp1.Models;
+using static WpfApp1.Helpers.EnumHelper;
 
 namespace WpfApp1.CustomControls
 {
     public partial class MyCustomControl : INotifyPropertyChanged
     {
+        public Biomaterials BiomaterialsEnum { get; }
+        public object _CurrentCell
+        {
+            get { return (object)GetValue(DataProperty); }
+            set { SetValue(DataProperty, value); }
+        }
+
+        public static readonly DependencyProperty DataProperty =
+            DependencyProperty.Register("CurrentCell", typeof(object), typeof(MyCustomControl), new UIPropertyMetadata(null));
         //Reaction plate
         #region _RowCount
         public static readonly DependencyProperty _RowCountProperty =
@@ -314,7 +325,10 @@ namespace WpfApp1.CustomControls
 
         private void SelectedBiomaterial(object a)
         {
+            var item = a as ValueDescription;
+            
         }
+
 
         private void SelectRow(object row)
         {

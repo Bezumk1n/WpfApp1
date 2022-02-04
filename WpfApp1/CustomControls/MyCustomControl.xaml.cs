@@ -25,7 +25,7 @@ namespace WpfApp1.CustomControls
             SetCommands();
         }
 
-        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        private void MenuButton_Click(object sender, RoutedEventArgs e)
         {
 
         }

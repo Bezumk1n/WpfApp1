@@ -26,11 +26,8 @@ namespace WpfApp1.Models
             get => _biomaterial;
             set
             {
-                if (_biomaterial != null)
-                { 
-                    _biomaterial = value;
-                    OnPropertyChanged();
-                }
+                _biomaterial = value;
+                OnPropertyChanged();
             }
         }
 
