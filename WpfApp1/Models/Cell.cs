@@ -42,10 +42,6 @@ namespace WpfApp1.Models
             }
         }
 
-        public Cell()
-        {
-            
-        }
         public Cell CreateCell(int index, int row, int column)
         {
             Index = index;

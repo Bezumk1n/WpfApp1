@@ -14,11 +14,8 @@ namespace WpfApp1
             get => _Columns;
             set
             {
-                if (value != null)
-                {
-                    _Columns = value;
-                    OnPropertyChanged();
-                }
+                _Columns = value;
+                OnPropertyChanged();
             }
         }
 
@@ -28,11 +25,8 @@ namespace WpfApp1
             get => _Rows;
             set
             {
-                if (value != null)
-                {
-                    _Rows = value;
-                    OnPropertyChanged();
-                }
+                _Rows = value;
+                OnPropertyChanged();
             }
         }
        
