@@ -7,14 +7,13 @@
         <Setter Property="Background" Value="AliceBlue"/>
         <Style.Triggers>
             <DataTrigger Binding="{Binding IsSelected}" Value="True">
-                <Setter Property="BorderBrush" Value="SeaGreen"/>
-                <Setter Property="Background" Value="LightSeaGreen"/>
+                <Setter Property="Background" Value="LightBlue"/>
             </DataTrigger>
-            <!--<DataTrigger Binding="{Binding State}" Value="Food">
-                <Setter Property="BorderBrush" Value="Red"/>
-                <Setter Property="Background" Value="LightPink"/>
-                <Setter Property="CornerRadius" Value="9"/>
-            </DataTrigger>-->
+
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="BorderBrush" Value="LightBlue"/>
+                <Setter Property="Background" Value="LightBlue"/>
+            </Trigger>
         </Style.Triggers>
     </Style>
     <Style x:Key="ReactionBlockHeaderBorder" TargetType="{x:Type Border}">
@@ -22,7 +21,7 @@
         <Setter Property="Height" Value="30"/>
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="Yellow"/>
+                <Setter Property="Background" Value="LightBlue"/>
             </Trigger>
         </Style.Triggers>
     </Style>

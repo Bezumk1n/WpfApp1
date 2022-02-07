@@ -7,7 +7,8 @@
              xmlns:converters="clr-namespace:WpfApp1.Converters"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
-             xmlns:bindingHelper="clr-namespace:WpfApp1.Helpers">
+             xmlns:bindingHelper="clr-namespace:WpfApp1.Helpers"
+             x:Name="uc">
     <Grid ShowGridLines="false">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -35,14 +36,13 @@
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
                     <Border Style="{StaticResource ReactionBlockHeaderBorder}">
-                        <TextBlock Text="{Binding}" Style="{StaticResource ReactionBlock_Header}">
-                            <TextBlock.InputBindings>
-                                <MouseBinding 
+                        <TextBlock Text="{Binding}" Style="{StaticResource ReactionBlock_Header}"/>
+                        <Border.InputBindings>
+                            <MouseBinding 
                                 Command="{Binding _CommandSelectRow, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}" 
                                 MouseAction="LeftClick" 
                                 CommandParameter="{Binding}"/>
-                            </TextBlock.InputBindings>
-                        </TextBlock>
+                        </Border.InputBindings>
                     </Border>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
@@ -57,14 +57,13 @@
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
                     <Border Style="{StaticResource ReactionBlockHeaderBorder}">
-                        <TextBlock Text="{Binding}" Style="{StaticResource ReactionBlock_Header}">
-                            <TextBlock.InputBindings>
-                                <MouseBinding 
+                        <TextBlock Text="{Binding}" Style="{StaticResource ReactionBlock_Header}"/>
+                        <Border.InputBindings>
+                            <MouseBinding 
                                 Command="{Binding _CommandSelectColumn, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}" 
                                 MouseAction="LeftClick" 
                                 CommandParameter="{Binding}"/>
-                            </TextBlock.InputBindings>
-                        </TextBlock>
+                        </Border.InputBindings>
                     </Border>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>

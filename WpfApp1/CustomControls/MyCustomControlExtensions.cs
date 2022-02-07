@@ -339,13 +339,15 @@ namespace WpfApp1.CustomControls
         private void SelectRow(object row)
         {
             var r = (char)row - 65 + 1;
-            _Items.Where(q => ((ReactionBlockCell)q).Row == r).Select(q => ((ReactionBlockCell)q).IsSelected = true).ToList();
+            var allIsSelected = _Items.Where(q => ((ReactionBlockCell)q).Row == r).All(q => ((ReactionBlockCell)q).IsSelected == true);
+            _Items.Where(q => ((ReactionBlockCell)q).Row == r).Select(q => ((ReactionBlockCell)q).IsSelected = !allIsSelected).ToList();
         }
 
         private void SelectColumn(object column)
         {
             var c = int.Parse(column.ToString());
-            _Items.Where(q => ((ReactionBlockCell)q).Column == c).Select(q => ((ReactionBlockCell)q).IsSelected = true).ToList();
+            var allIsSelected = _Items.Where(q => ((ReactionBlockCell)q).Column == c).All(q => ((ReactionBlockCell)q).IsSelected == true);
+            _Items.Where(q => ((ReactionBlockCell)q).Column == c).Select(q => ((ReactionBlockCell)q).IsSelected = !allIsSelected).ToList();
         }
 
         private void SelectAll(object obj)
