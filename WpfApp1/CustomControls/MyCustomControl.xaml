@@ -115,11 +115,11 @@
                                 <ContextMenu.ItemContainerStyle>
                                     <Style TargetType="MenuItem">
                                         <Setter Property="Command" Value="{Binding Path=Data._CommandSelectedBiomaterial, Source={StaticResource Proxy}}"/>
-                                        <!--<Setter Property="CommandParameter" Value="{Binding DataContext, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"/>-->
-                                        <!--<Setter Property="CommandParameter" Value="{Binding Source={StaticResource Proxy}}"/>-->
-                                        <!--<Setter Property="CommandParameter" Value="{Binding SelectedElement, Source={StaticResource Proxy}}"/>-->
-                                        <Setter Property="CommandParameter" Value="{Binding}"/>
-                                        <!--<Setter Property="CommandParameter">
+                                        <!--<Setter Property="CommandParameter" Value="{Binding DataContext, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"/>
+                                        <Setter Property="CommandParameter" Value="{Binding Source={StaticResource Proxy}}"/>
+                                        <Setter Property="CommandParameter" Value="{Binding SelectedElement, Source={StaticResource Proxy}}"/>
+                                        <Setter Property="CommandParameter" Value="{Binding}"/>-->
+                                        <Setter Property="CommandParameter">
                                             <Setter.Value>
                                                 <MultiBinding Converter="{converters:MenuItemCommandConverter}">
                                                     <MultiBinding.Bindings>
@@ -128,7 +128,7 @@
                                                     </MultiBinding.Bindings>
                                                 </MultiBinding>
                                             </Setter.Value>
-                                        </Setter>-->
+                                        </Setter>
                                     </Style>
                                 </ContextMenu.ItemContainerStyle>
                             </ContextMenu>
