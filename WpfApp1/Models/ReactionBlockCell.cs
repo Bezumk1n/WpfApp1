@@ -7,6 +7,7 @@ namespace WpfApp1.Models
 {
     public class ReactionBlockCell : BaseCell
     {
+        public object CellContext { get; set; }
         public int Index { get; set; }
         public int Row { get; set; }
         public int Column { get; set; }
@@ -24,12 +25,13 @@ namespace WpfApp1.Models
             }
         }
 
-        public ReactionBlockCell CreateCell(int index, int row, int column)
+        public ReactionBlockCell CreateCell(int index, int row, int column, object context)
         {
             Index = index;
             Row = row;
             Column = column;
             Position = $"{row}, {column}";
+            CellContext = context;
 
             return this;
         }

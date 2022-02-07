@@ -112,10 +112,10 @@
                             <ContextMenu>
                                 <MenuItem 
                                     Header="Recreate table" 
-                                    Command="{Binding Data.DataContext.NewReactionBlockCommand, Source={StaticResource Proxy}}"/>
+                                    Command="{Binding CellContext.NewReactionBlockCommand}"/>
                                 <MenuItem 
                                     Header="Available biomaterials" 
-                                    ItemsSource="{Binding Data.BiomaterialsEnum, Converter={converters:EnumToCollectionConverter}, Source={StaticResource Proxy}}"
+                                    ItemsSource="{Binding Biomaterial, Converter={converters:EnumToCollectionConverter}}"
                                     DisplayMemberPath="Description">
                                     <MenuItem.ItemContainerStyle>
                                         <Style TargetType="MenuItem">
