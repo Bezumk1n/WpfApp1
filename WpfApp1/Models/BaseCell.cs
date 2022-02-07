@@ -7,7 +7,6 @@ namespace WpfApp1.Models
 {
     public class BaseCell : NotifyPropertyChanged
     {
-        public int Index { get; set; }
         private string _sampleName;
         public string SampleName
         {

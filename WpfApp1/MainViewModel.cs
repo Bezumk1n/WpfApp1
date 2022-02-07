@@ -30,8 +30,8 @@ namespace WpfApp1
             }
         }
        
-        private List<Cell> _reactionBlockItems = new List<Cell>();
-        public List<Cell> ReactionBlockItems
+        private List<ReactionBlockCell> _reactionBlockItems = new List<ReactionBlockCell>();
+        public List<ReactionBlockCell> ReactionBlockItems
         {
             get => _reactionBlockItems;
             set
@@ -57,12 +57,12 @@ namespace WpfApp1
 
         private void CreateReactionBlock()
         {
-            var list = new List<Cell>();
+            var list = new List<ReactionBlockCell>();
             var index = 0;
             for (int i = 0; i < Rows; i++)
             {
                 for (int j = 0; j < Columns; j++)
-                    list.Add(new Cell().CreateCell(index: index++, row: i + 1, column: j + 1));
+                    list.Add(new ReactionBlockCell().CreateCell(index: index++, row: i + 1, column: j + 1));
             }
             ReactionBlockItems = list;
         }

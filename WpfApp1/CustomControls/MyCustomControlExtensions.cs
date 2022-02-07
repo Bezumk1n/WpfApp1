@@ -331,29 +331,29 @@ namespace WpfApp1.CustomControls
         private void SelectedBiomaterial(object obj)
         {
             var biomaterial = obj as ValueDescription;
-            ((Cell)_CurrentCell).Biomaterial = (Biomaterials)biomaterial.Value;
+            ((ReactionBlockCell)_CurrentCell).CellContent.Biomaterial = (Biomaterials)biomaterial.Value;
         }
 
 
         private void SelectRow(object row)
         {
             var r = (char)row - 65 + 1;
-            _Items.Where(q => ((Cell)q).Row == r).Select(q => ((Cell)q).IsSelected = true).ToList();
+            _Items.Where(q => ((ReactionBlockCell)q).Row == r).Select(q => ((ReactionBlockCell)q).IsSelected = true).ToList();
         }
 
         private void SelectColumn(object column)
         {
             var c = int.Parse(column.ToString());
-            _Items.Where(q => ((Cell)q).Column == c).Select(q => ((Cell)q).IsSelected = true).ToList();
+            _Items.Where(q => ((ReactionBlockCell)q).Column == c).Select(q => ((ReactionBlockCell)q).IsSelected = true).ToList();
         }
 
         private void SelectAll(object obj)
         {
-            var allIsSelected = _Items.All(q => ((Cell)q).IsSelected == true);
+            var allIsSelected = _Items.All(q => ((ReactionBlockCell)q).IsSelected == true);
             if(allIsSelected)
-                _Items.Select(q => ((Cell)q).IsSelected = false).ToArray();
+                _Items.Select(q => ((ReactionBlockCell)q).IsSelected = false).ToArray();
             else
-                _Items.Select(q => ((Cell)q).IsSelected = true).ToArray();
+                _Items.Select(q => ((ReactionBlockCell)q).IsSelected = true).ToArray();
         }
         #endregion
 

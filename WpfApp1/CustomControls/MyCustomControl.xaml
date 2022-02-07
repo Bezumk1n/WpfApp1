@@ -96,7 +96,7 @@
                                 x:Name="sampleNameTextBox"
                                 Grid.Row="0"
                                 IsEnabled="False"
-                                Text="{Binding SampleName, UpdateSourceTrigger=PropertyChanged}" 
+                                Text="{Binding CellContent.SampleName, UpdateSourceTrigger=PropertyChanged}" 
                                 Style="{StaticResource ReactionBlock_CellTextBox}" 
                                 Tag="Имя образца">
                             </TextBox>
@@ -106,8 +106,8 @@
                                 SelectedValue="{Binding Biomaterial}"
                                 SelectedValuePath="Value"
                                 DisplayMemberPath="Description"/>-->
-                            <TextBlock Grid.Row="1" Text="{Binding Biomaterial, Converter={converters:EnumToStringConverter}}"/>
-                            <TextBlock Grid.Row="2" Text="Методика" Tag="{Binding SampleName}" Style="{StaticResource ReactionBlock_CellWithTag}"/>
+                            <TextBlock Grid.Row="1" Text="{Binding CellContent.Biomaterial, Converter={converters:EnumToStringConverter}}"/>
+                            <TextBlock Grid.Row="2" Text="Методика" Tag="{Binding CellContent.SampleName}" Style="{StaticResource ReactionBlock_CellWithTag}"/>
                         </Grid>
                         <Border.ContextMenu>
                             <ContextMenu MouseEnter="ContextMenu_MouseEnter">

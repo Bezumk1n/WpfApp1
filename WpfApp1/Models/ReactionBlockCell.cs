@@ -5,8 +5,10 @@ using System.Windows.Controls;
 
 namespace WpfApp1.Models
 {
-    public class ReactionBlockCell : Border
+    public class ReactionBlockCell : NotifyPropertyChanged
     {
+        public Cell CellContent { get; set; }
+        public int Index { get; set; }
         public int Row { get; set; }
         public int Column { get; set; }
         public string Position { get; set; }
@@ -29,6 +31,7 @@ namespace WpfApp1.Models
             Row = row;
             Column = column;
             Position = $"{row}, {column}";
+            CellContent = new Cell();
 
             return this;
         }
