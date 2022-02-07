@@ -84,52 +84,52 @@
                         <Border.Resources>
                             <bindingHelper:BindingProxy 
                                 x:Key="Proxy" 
-                                DataContext="{Binding RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"/>
+                                Data="{Binding RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"/>
                         </Border.Resources>
                         <Grid>
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
                             <TextBox 
                                 x:Name="sampleNameTextBox"
                                 Grid.Row="0"
-                                IsEnabled="False"
-                                Text="{Binding CellContent.SampleName, UpdateSourceTrigger=PropertyChanged}" 
+                                Text="{Binding SampleName, UpdateSourceTrigger=PropertyChanged}" 
                                 Style="{StaticResource ReactionBlock_CellTextBox}" 
                                 Tag="Имя образца">
                             </TextBox>
-                            <!--<ComboBox 
+                            <ComboBox 
                                 Grid.Row="1" 
                                 ItemsSource="{Binding BiomaterialsEnum, Converter={converters:EnumToCollectionConverter}, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"
-                                SelectedValue="{Binding Biomaterial}"
+                                SelectedValue="{Binding CellContent.Biomaterial}"
                                 SelectedValuePath="Value"
-                                DisplayMemberPath="Description"/>-->
-                            <TextBlock Grid.Row="1" Text="{Binding CellContent.Biomaterial, Converter={converters:EnumToStringConverter}}"/>
-                            <TextBlock Grid.Row="2" Text="Методика" Tag="{Binding CellContent.SampleName}" Style="{StaticResource ReactionBlock_CellWithTag}"/>
+                                DisplayMemberPath="Description"/>
+                            <TextBlock Grid.Row="2" Text="{Binding Biomaterial, Converter={converters:EnumToStringConverter}}"/>
+                            <TextBlock Grid.Row="3" Text="Методика" Tag="{Binding SampleName}" Style="{StaticResource ReactionBlock_CellWithTag}"/>
                         </Grid>
                         <Border.ContextMenu>
                             <ContextMenu MouseEnter="ContextMenu_MouseEnter">
                                 <MenuItem Header="Menu Item"/>
                                 <MenuItem 
                                     Header="Available biomaterials" 
-                                    ItemsSource="{Binding DataContext.BiomaterialsEnum, Converter={converters:EnumToCollectionConverter}, Source={StaticResource Proxy}}"
+                                    ItemsSource="{Binding Data.BiomaterialsEnum, Converter={converters:EnumToCollectionConverter}, Source={StaticResource Proxy}}"
                                     DisplayMemberPath="Description">
                                     <MenuItem.ItemContainerStyle>
                                         <Style TargetType="MenuItem">
-                                            <Setter Property="Command" Value="{Binding DataContext._CommandSelectedBiomaterial, Source={StaticResource Proxy}}"/>
+                                            <Setter Property="Command" Value="{Binding Data._CommandSelectedBiomaterial, Source={StaticResource Proxy}}"/>
                                             <Setter Property="CommandParameter" Value="{Binding}"/>
                                         </Style>
                                     </MenuItem.ItemContainerStyle>
                                 </MenuItem>
                             </ContextMenu>
                         </Border.ContextMenu>
-                        <Border.InputBindings>
+                        <!--<Border.InputBindings>
                             <MouseBinding MouseAction="LeftDoubleClick"
                                 Command="{Binding _CommandEnableTextBox, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"
                                 CommandParameter="{Binding ElementName=sampleNameTextBox}"/>
-                        </Border.InputBindings>
+                        </Border.InputBindings>-->
                     </Border>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>

@@ -12,13 +12,13 @@ namespace WpfApp1.Helpers
             return new BindingProxy();
         }
 
-        public object DataContext
+        public object Data
         {
-            get { return (object)GetValue(DataContextProperty); }
-            set { SetValue(DataContextProperty, value); }
+            get { return (object)GetValue(DataProperty); }
+            set { SetValue(DataProperty, value); }
         }
 
-        public static readonly DependencyProperty DataContextProperty =
-            DependencyProperty.Register("DataContext", typeof(object), typeof(BindingProxy), new UIPropertyMetadata(null));
+        public static readonly DependencyProperty DataProperty =
+            DependencyProperty.Register("Data", typeof(object), typeof(BindingProxy), new UIPropertyMetadata(null));
     }
 }

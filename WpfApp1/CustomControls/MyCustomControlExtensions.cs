@@ -331,7 +331,7 @@ namespace WpfApp1.CustomControls
         private void SelectedBiomaterial(object obj)
         {
             var biomaterial = obj as ValueDescription;
-            ((ReactionBlockCell)_CurrentCell).CellContent.Biomaterial = (Biomaterials)biomaterial.Value;
+            ((ReactionBlockCell)_CurrentCell).Biomaterial = (Biomaterials)biomaterial.Value;
         }
 
 
