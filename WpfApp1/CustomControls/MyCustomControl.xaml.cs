@@ -25,11 +25,5 @@ namespace WpfApp1.CustomControls
             InitializeComponent();
             SetCommands();
         }
-
-        private void ContextMenu_MouseEnter(object sender, MouseEventArgs e)
-        {
-            if (sender is ContextMenu)
-                CurrentCell = (sender as ContextMenu).DataContext;
-        }
     }
 }

@@ -7,14 +7,14 @@ using System.Windows.Markup;
 
 namespace WpfApp1.Converters
 {
-    public class ObjectConverter : MarkupExtension, IValueConverter
+    public class MultiValueConverter : MarkupExtension, IMultiValueConverter
     {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
-            return value;
+            return values.Clone();
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
         {
             throw new NotImplementedException();
         }

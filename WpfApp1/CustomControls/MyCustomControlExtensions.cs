@@ -18,7 +18,6 @@ namespace WpfApp1.CustomControls
     public partial class MyCustomControl : INotifyPropertyChanged
     {
         public Biomaterials BiomaterialsEnum { get; set; }
-        private object CurrentCell { get; set; }
 
         //Reaction plate
         #region _RowCount
@@ -331,8 +330,11 @@ namespace WpfApp1.CustomControls
 
         private void SelectedBiomaterial(object obj)
         {
-            var biomaterial = obj as ValueDescription;
-            ((ReactionBlockCell)CurrentCell).Biomaterial = (Biomaterials)biomaterial.Value;
+            var values = (object[])obj;
+            var currentCell = (ReactionBlockCell)values[0];
+            var biomaterial = ((ValueDescription)values[1]).Value;
+
+            currentCell.Biomaterial = (Biomaterials)biomaterial;
         }
 
 

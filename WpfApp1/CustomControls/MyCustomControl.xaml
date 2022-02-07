@@ -109,7 +109,7 @@
                             <TextBlock Grid.Row="3" Text="Методика" Tag="{Binding SampleName}" Style="{StaticResource ReactionBlock_CellWithTag}"/>
                         </Grid>
                         <Border.ContextMenu>
-                            <ContextMenu MouseEnter="ContextMenu_MouseEnter">
+                            <ContextMenu>
                                 <MenuItem Header="Menu Item"/>
                                 <MenuItem 
                                     Header="Available biomaterials" 
@@ -118,7 +118,14 @@
                                     <MenuItem.ItemContainerStyle>
                                         <Style TargetType="MenuItem">
                                             <Setter Property="Command" Value="{Binding Data._CommandSelectedBiomaterial, Source={StaticResource Proxy}}"/>
-                                            <Setter Property="CommandParameter" Value="{Binding}"/>
+                                            <Setter Property="CommandParameter">
+                                                <Setter.Value>
+                                                    <MultiBinding Converter="{converters:MultiValueConverter}">
+                                                        <Binding Path="DataContext" RelativeSource="{RelativeSource AncestorType={x:Type ContextMenu}}"/>
+                                                        <Binding Path="Header" RelativeSource="{RelativeSource Self}"/>
+                                                    </MultiBinding>
+                                                </Setter.Value>
+                                            </Setter>
                                         </Style>
                                     </MenuItem.ItemContainerStyle>
                                 </MenuItem>
