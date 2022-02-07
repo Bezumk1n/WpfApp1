@@ -331,10 +331,12 @@ namespace WpfApp1.CustomControls
         private void SelectedBiomaterial(object obj)
         {
             var values = (object[])obj;
-            var currentCell = (ReactionBlockCell)values[0];
-            var biomaterial = ((ValueDescription)values[1]).Value;
 
-            currentCell.Biomaterial = (Biomaterials)biomaterial;
+            ReactionBlockCell currentCell = values.FirstOrDefault(q => q.GetType() == typeof(ReactionBlockCell)) as ReactionBlockCell;
+            ValueDescription biomaterial = values.FirstOrDefault(q => q.GetType() == typeof(ValueDescription)) as ValueDescription;
+
+            if(currentCell != null && biomaterial!=null)
+                currentCell.Biomaterial = (Biomaterials)biomaterial.Value;
         }
 
 
