@@ -42,11 +42,6 @@ namespace WpfApp1
         }
         
         public ICommand NewReactionBlockCommand { get; private set; }
-        public ICommand _CommandSelectedBiomaterial => new RelayCommand(a => SelectedBiomaterial(a));
-
-        private static void SelectedBiomaterial(object a)
-        {
-        }
 
         public MainViewModel()
         {

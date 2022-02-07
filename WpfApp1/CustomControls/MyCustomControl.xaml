@@ -110,7 +110,9 @@
                         </Grid>
                         <Border.ContextMenu>
                             <ContextMenu>
-                                <MenuItem Header="Menu Item"/>
+                                <MenuItem 
+                                    Header="Recreate table" 
+                                    Command="{Binding Data.DataContext.NewReactionBlockCommand, Source={StaticResource Proxy}}"/>
                                 <MenuItem 
                                     Header="Available biomaterials" 
                                     ItemsSource="{Binding Data.BiomaterialsEnum, Converter={converters:EnumToCollectionConverter}, Source={StaticResource Proxy}}"
