@@ -7,16 +7,16 @@ using System.Windows.Markup;
 
 namespace WpfApp1.Converters
 {
-    public class MenuItemCommandConverter : MarkupExtension, IMultiValueConverter
+    public class ObjectConverter : MarkupExtension, IValueConverter
     {
-        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return values;
+            return value;
         }
 
-        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return null;
+            throw new NotImplementedException();
         }
 
         public override object ProvideValue(IServiceProvider serviceProvider)

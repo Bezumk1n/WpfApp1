@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Windows.Data;
 using System.Windows.Markup;
+using WpfApp1.Helpers;
 
 namespace WpfApp1.Converters
 {
@@ -11,11 +12,8 @@ namespace WpfApp1.Converters
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
             var result = string.Empty;
-            try
-            {
-                result = Enum.GetName((value.GetType()), value);
-            }
-            catch { }
+            if (value is Enum)
+                result = ((Enum)value).Description();
             return result;
         }
 

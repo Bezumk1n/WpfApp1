@@ -17,15 +17,9 @@ namespace WpfApp1.CustomControls
 {
     public partial class MyCustomControl : INotifyPropertyChanged
     {
-        public Biomaterials BiomaterialsEnum { get; }
-        public object _CurrentCell
-        {
-            get { return (object)GetValue(DataProperty); }
-            set { SetValue(DataProperty, value); }
-        }
-
-        public static readonly DependencyProperty DataProperty =
-            DependencyProperty.Register("CurrentCell", typeof(object), typeof(MyCustomControl), new UIPropertyMetadata(null));
+        public Biomaterials BiomaterialsEnum { get; set; }
+        public object _CurrentCell { get; set; }
+        
         //Reaction plate
         #region _RowCount
         public static readonly DependencyProperty _RowCountProperty =
@@ -315,6 +309,7 @@ namespace WpfApp1.CustomControls
         public ICommand _CommandSelectColumn { get; private set; }
         public ICommand _CommandSelectRow { get; private set; }
         public ICommand _CommandSelectedBiomaterial { get; private set; }
+        public ICommand _CommandEnableTextBox { get; private set; }
 
         private void SetCommands()
         {
@@ -322,13 +317,19 @@ namespace WpfApp1.CustomControls
             _CommandSelectColumn = new RelayCommand(a => SelectColumn(a));
             _CommandSelectRow = new RelayCommand(a => SelectRow(a));
             _CommandSelectedBiomaterial = new RelayCommand(a => SelectedBiomaterial(a));
+            _CommandEnableTextBox = new RelayCommand(a => EnableTextBox(a));
+        }
+
+        private void EnableTextBox(object a)
+        {
+            var textBox = a as TextBox;
+            textBox.IsEnabled = true;
         }
 
         private void SelectedBiomaterial(object a)
         {
-            var item = a as ValueDescription;
-            
-            
+            var biomaterial = a as ValueDescription;
+            ((Cell)_CurrentCell).Biomaterial = (Biomaterials)biomaterial.Value;
         }
 
 

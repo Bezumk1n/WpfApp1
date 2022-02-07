@@ -12,22 +12,13 @@ namespace WpfApp1.Helpers
             return new BindingProxy();
         }
 
-        public object Data
+        public object DataContext
         {
-            get { return (object)GetValue(DataProperty); }
-            set { SetValue(DataProperty, value); }
+            get { return (object)GetValue(DataContextProperty); }
+            set { SetValue(DataContextProperty, value); }
         }
 
-        public static readonly DependencyProperty DataProperty =
-            DependencyProperty.Register("Data", typeof(object), typeof(BindingProxy), new UIPropertyMetadata(null));
-
-        public object SelectedElement
-        {
-            get { return (object)GetValue(DataProperty); }
-            set { SetValue(DataProperty, value); }
-        }
-
-        public static readonly DependencyProperty SelectedElementProperty =
-            DependencyProperty.Register("SelectedElement", typeof(object), typeof(BindingProxy), new UIPropertyMetadata(null));
+        public static readonly DependencyProperty DataContextProperty =
+            DependencyProperty.Register("DataContext", typeof(object), typeof(BindingProxy), new UIPropertyMetadata(null));
     }
 }

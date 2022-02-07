@@ -13,10 +13,10 @@
                     <TextBlock x:Name="WaterMarkLabel" Text="{TemplateBinding Tag}" Visibility="Collapsed" TextWrapping="Wrap"/>
                 </Grid>
                 <ControlTemplate.Triggers>
-                    <Trigger Property="Text" Value="">
-                        <Setter Property="Visibility" TargetName="WaterMarkLabel" Value="Visible"/>
-                    </Trigger>
-                    <Trigger Property="IsKeyboardFocused" Value="True">
+                        <Trigger Property="Text" Value="">
+                            <Setter Property="Visibility" TargetName="WaterMarkLabel" Value="Visible"/>
+                        </Trigger>
+                        <Trigger Property="IsKeyboardFocused" Value="True">
                         <Setter Property="Visibility" TargetName="WaterMarkLabel" Value="Hidden"/>
                     </Trigger>
                     <Trigger Property="IsMouseOver" Value="False">

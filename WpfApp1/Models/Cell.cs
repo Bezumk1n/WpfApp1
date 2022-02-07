@@ -6,6 +6,7 @@ namespace WpfApp1.Models
 {
     public class Cell : BaseCell
     {
+        public object CellDataContext { get; set; }
         public int Row { get; set; }
         public int Column { get; set; }
         public string Position { get; set; }

@@ -13,6 +13,8 @@ namespace WpfApp1.Enums
         [Description("Слюна")]
         Saliva,
         [Description("МОЧА")]
-        URINE
+        URINE,
+        [Description("МОЧА2")]
+        URINE2
     }
 }

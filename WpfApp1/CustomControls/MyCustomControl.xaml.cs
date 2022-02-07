@@ -11,6 +11,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WpfApp1.CustomControls;
+using WpfApp1.Models;
 
 namespace WpfApp1.CustomControls
 {
@@ -23,6 +24,12 @@ namespace WpfApp1.CustomControls
         {
             InitializeComponent();
             SetCommands();
+        }
+
+        private void ContextMenu_MouseEnter(object sender, MouseEventArgs e)
+        {
+            if (sender is ContextMenu)
+                _CurrentCell = (sender as ContextMenu).DataContext;
         }
     }
 }
