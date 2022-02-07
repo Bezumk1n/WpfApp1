@@ -19,7 +19,7 @@ namespace WpfApp1.CustomControls
     {
         public Biomaterials BiomaterialsEnum { get; set; }
         public object _CurrentCell { get; set; }
-        
+
         //Reaction plate
         #region _RowCount
         public static readonly DependencyProperty _RowCountProperty =
@@ -111,6 +111,7 @@ namespace WpfApp1.CustomControls
             //    currentIndex += step;
             //}
             //UserControlControl._ItemCells = list;
+
             UserControlControl._ItemCells = e.NewValue;
             //Headers
             if (UserControlControl._IsGenerateHeaders)
@@ -313,22 +314,23 @@ namespace WpfApp1.CustomControls
 
         private void SetCommands()
         {
-            _CommandSelectAll = new RelayCommand(a => SelectAll(a));
-            _CommandSelectColumn = new RelayCommand(a => SelectColumn(a));
-            _CommandSelectRow = new RelayCommand(a => SelectRow(a));
-            _CommandSelectedBiomaterial = new RelayCommand(a => SelectedBiomaterial(a));
-            _CommandEnableTextBox = new RelayCommand(a => EnableTextBox(a));
+            _CommandSelectAll = new RelayCommand(obj => SelectAll(obj));
+            _CommandSelectColumn = new RelayCommand(obj => SelectColumn(obj));
+            _CommandSelectRow = new RelayCommand(obj => SelectRow(obj));
+            _CommandSelectedBiomaterial = new RelayCommand(obj => SelectedBiomaterial(obj));
+            _CommandEnableTextBox = new RelayCommand(obj => EnableTextBox(obj));
         }
 
-        private void EnableTextBox(object a)
+        private void EnableTextBox(object obj)
         {
-            var textBox = a as TextBox;
+            var textBox = obj as TextBox;
             textBox.IsEnabled = true;
+            Keyboard.Focus(textBox);
         }
 
-        private void SelectedBiomaterial(object a)
+        private void SelectedBiomaterial(object obj)
         {
-            var biomaterial = a as ValueDescription;
+            var biomaterial = obj as ValueDescription;
             ((Cell)_CurrentCell).Biomaterial = (Biomaterials)biomaterial.Value;
         }
 
@@ -345,7 +347,7 @@ namespace WpfApp1.CustomControls
             _Items.Where(q => ((Cell)q).Column == c).Select(q => ((Cell)q).IsSelected = true).ToList();
         }
 
-        private void SelectAll(object a)
+        private void SelectAll(object obj)
         {
             var allIsSelected = _Items.All(q => ((Cell)q).IsSelected == true);
             if(allIsSelected)

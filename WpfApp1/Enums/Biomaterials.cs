@@ -7,6 +7,7 @@ namespace WpfApp1.Enums
 {
     public enum Biomaterials
     {
+        [Description("Биоматериал не выбран")]
         None,
         [Description("Кровь")]
         Blood,
@@ -14,7 +15,5 @@ namespace WpfApp1.Enums
         Saliva,
         [Description("МОЧА")]
         URINE,
-        [Description("МОЧА2")]
-        URINE2
     }
 }

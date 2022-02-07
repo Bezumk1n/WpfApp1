@@ -1,15 +1,16 @@
-﻿
-using System;
-using WpfApp1.Enums;
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Windows.Controls;
 
 namespace WpfApp1.Models
 {
-    public class Cell : BaseCell
+    public class ReactionBlockCell : Border
     {
         public int Row { get; set; }
         public int Column { get; set; }
         public string Position { get; set; }
-        
+
 
         private bool _isSelected;
         public bool IsSelected
@@ -22,7 +23,7 @@ namespace WpfApp1.Models
             }
         }
 
-        public Cell CreateCell(int index, int row, int column)
+        public ReactionBlockCell CreateCell(int index, int row, int column)
         {
             Index = index;
             Row = row;
