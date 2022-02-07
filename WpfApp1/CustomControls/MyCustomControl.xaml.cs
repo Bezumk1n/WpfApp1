@@ -29,7 +29,7 @@ namespace WpfApp1.CustomControls
         private void ContextMenu_MouseEnter(object sender, MouseEventArgs e)
         {
             if (sender is ContextMenu)
-                _CurrentCell = (sender as ContextMenu).DataContext;
+                CurrentCell = (sender as ContextMenu).DataContext;
         }
     }
 }

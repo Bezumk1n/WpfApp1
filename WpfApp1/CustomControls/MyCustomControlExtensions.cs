@@ -18,7 +18,7 @@ namespace WpfApp1.CustomControls
     public partial class MyCustomControl : INotifyPropertyChanged
     {
         public Biomaterials BiomaterialsEnum { get; set; }
-        public object _CurrentCell { get; set; }
+        private object CurrentCell { get; set; }
 
         //Reaction plate
         #region _RowCount
@@ -113,6 +113,7 @@ namespace WpfApp1.CustomControls
             //UserControlControl._ItemCells = list;
 
             UserControlControl._ItemCells = e.NewValue;
+
             //Headers
             if (UserControlControl._IsGenerateHeaders)
             {
@@ -331,7 +332,7 @@ namespace WpfApp1.CustomControls
         private void SelectedBiomaterial(object obj)
         {
             var biomaterial = obj as ValueDescription;
-            ((ReactionBlockCell)_CurrentCell).Biomaterial = (Biomaterials)biomaterial.Value;
+            ((ReactionBlockCell)CurrentCell).Biomaterial = (Biomaterials)biomaterial.Value;
         }
 
 
@@ -350,10 +351,7 @@ namespace WpfApp1.CustomControls
         private void SelectAll(object obj)
         {
             var allIsSelected = _Items.All(q => ((ReactionBlockCell)q).IsSelected == true);
-            if(allIsSelected)
-                _Items.Select(q => ((ReactionBlockCell)q).IsSelected = false).ToArray();
-            else
-                _Items.Select(q => ((ReactionBlockCell)q).IsSelected = true).ToArray();
+            _Items.Select(q => ((ReactionBlockCell)q).IsSelected = !allIsSelected).ToArray();
         }
         #endregion
 

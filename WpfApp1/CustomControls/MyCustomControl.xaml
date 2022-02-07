@@ -103,7 +103,7 @@
                             <ComboBox 
                                 Grid.Row="1" 
                                 ItemsSource="{Binding BiomaterialsEnum, Converter={converters:EnumToCollectionConverter}, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"
-                                SelectedValue="{Binding CellContent.Biomaterial}"
+                                SelectedValue="{Binding Biomaterial}"
                                 SelectedValuePath="Value"
                                 DisplayMemberPath="Description"/>
                             <TextBlock Grid.Row="2" Text="{Binding Biomaterial, Converter={converters:EnumToStringConverter}}"/>
