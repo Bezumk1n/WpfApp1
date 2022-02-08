@@ -15,6 +15,7 @@
             </Trigger>
         </Style.Triggers>
     </Style>
+    
     <Style x:Key="ReactionBlockHeaderBorder" TargetType="{x:Type Border}">
         <Setter Property="Width" Value="30"/>
         <Setter Property="Height" Value="30"/>

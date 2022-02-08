@@ -96,7 +96,7 @@
                                 x:Name="sampleNameTextBox"
                                 Grid.Row="0"
                                 Text="{Binding SampleName, UpdateSourceTrigger=PropertyChanged}" 
-                                Style="{StaticResource ReactionBlock_CellTextBox}" 
+                                Style="{StaticResource ReactionBlock_CellTextBoxWithTag}" 
                                 Tag="Имя образца">
                             </TextBox>
                             <ComboBox 
