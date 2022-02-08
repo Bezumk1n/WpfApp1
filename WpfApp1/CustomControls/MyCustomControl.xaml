@@ -101,29 +101,31 @@
                             </TextBox>
                             <ComboBox 
                                 Grid.Row="1" 
-                                ItemsSource="{Binding BiomaterialsEnum, Converter={converters:EnumToCollectionConverter}, ElementName=uc}"
+                                ItemsSource="{Binding BiomaterialsEnum, Converter={StaticResource EnumToCollectionConverter}, ElementName=uc}"
                                 SelectedValue="{Binding Biomaterial}"
                                 SelectedValuePath="Value"
                                 DisplayMemberPath="Description"/>
-                            <TextBlock Grid.Row="2" Text="{Binding Biomaterial, Converter={converters:EnumToStringConverter}}"/>
+                            <TextBlock Grid.Row="2" Text="{Binding Biomaterial, Converter={StaticResource EnumToStringConverter}}"/>
                             <TextBlock Grid.Row="3" Text="Методика" Tag="{Binding SampleName}" Style="{StaticResource ReactionBlock_CellWithTag}"/>
                         </Grid>
                         <Border.ContextMenu>
                             <ContextMenu>
                                 <MenuItem 
                                     Header="Recreate table" 
-                                    Command="{Binding CellContext.NewReactionBlockCommand}"/>
+                                    Command="{Binding Data.DataContext.NewReactionBlockCommand, Source={StaticResource Proxy}}"/>
                                 <MenuItem 
                                     Header="Available biomaterials" 
-                                    ItemsSource="{Binding Biomaterial, Converter={converters:EnumToCollectionConverter}}"
+                                    ItemsSource="{Binding Biomaterial, Converter={StaticResource EnumToCollectionConverter}}"
+                                    
                                     DisplayMemberPath="Description">
                                     <MenuItem.ItemContainerStyle>
                                         <Style TargetType="MenuItem">
                                             <!--<Setter Property="Command" Value="{Binding Data._CommandSelectedBiomaterial, Source={StaticResource Proxy}}"/>-->
+                                            <!--<Setter Property="Command" Value="{Binding DataContext.NewReactionBlockCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"/>-->
                                             <Setter Property="Command" Value="{Binding _CommandSelectedBiomaterial, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"/>
                                             <Setter Property="CommandParameter">
                                                 <Setter.Value>
-                                                    <MultiBinding Converter="{converters:MultiValueConverter}">
+                                                    <MultiBinding Converter="{StaticResource MultiValueConverter}">
                                                         <Binding Path="DataContext" RelativeSource="{RelativeSource AncestorType={x:Type ContextMenu}}"/>
                                                         <Binding Path="Header" RelativeSource="{RelativeSource Self}"/>
                                                     </MultiBinding>

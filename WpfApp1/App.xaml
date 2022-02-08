@@ -10,6 +10,12 @@
                 <ResourceDictionary Source="Styles\BorderStyle.xaml"/>
                 <ResourceDictionary Source="Styles\TextBlockStyle.xaml"/>
                 <ResourceDictionary Source="Styles\TextBoxStyle.xaml"/>
+
+                <ResourceDictionary>
+                    <converters:EnumToCollectionConverter x:Key="EnumToCollectionConverter"/>
+                    <converters:EnumToStringConverter x:Key="EnumToStringConverter"/>
+                    <converters:MultiValueConverter x:Key="MultiValueConverter"/>
+                </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

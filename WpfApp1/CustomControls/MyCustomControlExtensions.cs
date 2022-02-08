@@ -99,7 +99,7 @@ namespace WpfApp1.CustomControls
 
             //if (UserControlControl._RowCount * UserControlControl._ColumnCount > count)
             //{
-            //    //throw new Exception("Reaction plate - Invalid cells count");
+            //    throw new Exception("Reaction plate - Invalid cells count");
             //    return;
             //}
             //while (currentIndex < count)
