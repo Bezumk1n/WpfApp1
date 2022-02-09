@@ -69,7 +69,7 @@
             </ItemsControl.ItemTemplate>
         </ItemsControl>
         <!--Реакционный блок-->
-        <ItemsControl ItemsSource="{Binding _ItemCells, ElementName=uc}" Grid.Column="1" Grid.Row="1">
+        <ItemsControl ItemsSource="{Binding _ItemCells, ElementName=uc}" Grid.Column="1" Grid.Row="1" ItemTemplate="{Binding _Style_ItemTemplate, ElementName=uc}">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <UniformGrid
@@ -77,73 +77,6 @@
                         Columns="{Binding _ColumnCount, ElementName=uc}"/>
                 </ItemsPanelTemplate>
             </ItemsControl.ItemsPanel>
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <Border Style="{StaticResource ReactionBlockBorder}">
-                        <Border.Resources>
-                            <bindingHelper:BindingProxy 
-                                x:Key="Proxy" 
-                                Data="{Binding ElementName=uc}"/>
-                        </Border.Resources>
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                            </Grid.RowDefinitions>
-                            <TextBox 
-                                x:Name="sampleNameTextBox"
-                                Grid.Row="0"
-                                Text="{Binding SampleName, UpdateSourceTrigger=PropertyChanged}" 
-                                Style="{StaticResource ReactionBlock_CellTextBoxWithTag}" 
-                                Tag="Имя образца">
-                            </TextBox>
-                            <ComboBox 
-                                Grid.Row="1" 
-                                ItemsSource="{Binding BiomaterialsEnum, Converter={StaticResource EnumToCollectionConverter}, ElementName=uc}"
-                                SelectedValue="{Binding Biomaterial}"
-                                SelectedValuePath="Value"
-                                DisplayMemberPath="Description"/>
-                            <TextBlock Grid.Row="2" Text="{Binding Biomaterial, Converter={StaticResource EnumToStringConverter}}"/>
-                            <TextBlock Grid.Row="3" Text="Методика" Tag="{Binding SampleName}" Style="{StaticResource ReactionBlock_CellWithTag}"/>
-                        </Grid>
-                        <Border.ContextMenu>
-                            <ContextMenu>
-                                <MenuItem 
-                                    Header="Recreate table" 
-                                    Command="{Binding Data.DataContext.NewReactionBlockCommand, Source={StaticResource Proxy}}"/>
-                                <MenuItem 
-                                    Header="Available biomaterials" 
-                                    ItemsSource="{Binding Biomaterial, Converter={StaticResource EnumToCollectionConverter}}"
-                                    
-                                    DisplayMemberPath="Description">
-                                    <MenuItem.ItemContainerStyle>
-                                        <Style TargetType="MenuItem">
-                                            <!--<Setter Property="Command" Value="{Binding Data._CommandSelectedBiomaterial, Source={StaticResource Proxy}}"/>-->
-                                            <!--<Setter Property="Command" Value="{Binding DataContext.NewReactionBlockCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"/>-->
-                                            <Setter Property="Command" Value="{Binding _CommandSelectedBiomaterial, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"/>
-                                            <Setter Property="CommandParameter">
-                                                <Setter.Value>
-                                                    <MultiBinding Converter="{StaticResource MultiValueConverter}">
-                                                        <Binding Path="DataContext" RelativeSource="{RelativeSource AncestorType={x:Type ContextMenu}}"/>
-                                                        <Binding Path="Header" RelativeSource="{RelativeSource Self}"/>
-                                                    </MultiBinding>
-                                                </Setter.Value>
-                                            </Setter>
-                                        </Style>
-                                    </MenuItem.ItemContainerStyle>
-                                </MenuItem>
-                            </ContextMenu>
-                        </Border.ContextMenu>
-                        <!--<Border.InputBindings>
-                            <MouseBinding MouseAction="LeftDoubleClick"
-                                Command="{Binding _CommandEnableTextBox, ElementName=uc}"
-                                CommandParameter="{Binding ElementName=sampleNameTextBox}"/>
-                        </Border.InputBindings>-->
-                    </Border>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
         </ItemsControl>
     </Grid>
 </UserControl>

@@ -17,8 +17,6 @@ namespace WpfApp1.CustomControls
 {
     public partial class MyCustomControl : INotifyPropertyChanged
     {
-        public Biomaterials BiomaterialsEnum { get; set; }
-
         //Reaction plate
         #region _RowCount
         public static readonly DependencyProperty _RowCountProperty =
@@ -310,7 +308,6 @@ namespace WpfApp1.CustomControls
         public ICommand _CommandSelectColumn { get; private set; }
         public ICommand _CommandSelectRow { get; private set; }
         public ICommand _CommandSelectedBiomaterial { get; private set; }
-        public ICommand _CommandEnableTextBox { get; private set; }
 
         private void SetCommands()
         {
@@ -318,14 +315,6 @@ namespace WpfApp1.CustomControls
             _CommandSelectColumn = new RelayCommand(obj => SelectColumn(obj));
             _CommandSelectRow = new RelayCommand(obj => SelectRow(obj));
             _CommandSelectedBiomaterial = new RelayCommand(obj => SelectedBiomaterial(obj));
-            _CommandEnableTextBox = new RelayCommand(obj => EnableTextBox(obj));
-        }
-
-        private void EnableTextBox(object obj)
-        {
-            var textBox = obj as TextBox;
-            textBox.IsEnabled = true;
-            Keyboard.Focus(textBox);
         }
 
         private void SelectedBiomaterial(object obj)
