@@ -1,17 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Windows.Controls;
 
 namespace WpfApp1.Models
 {
-    public class ReactionBlockCell : BaseCell
+    public class CellAdapter : BaseCell
     {
+        public object CellContent { get; set; }
         public int Index { get; set; }
         public int Row { get; set; }
         public int Column { get; set; }
-        public string Position { get; set; }
-
 
         private bool _isSelected;
         public bool IsSelected
@@ -24,12 +22,12 @@ namespace WpfApp1.Models
             }
         }
 
-        public ReactionBlockCell CreateCell(int index, int row, int column)
+        public CellAdapter CreateCell(int index, int row, int column, object context)
         {
             Index = index;
             Row = row;
             Column = column;
-            Position = $"{row}, {column}";
+            CellContent = context;
 
             return this;
         }

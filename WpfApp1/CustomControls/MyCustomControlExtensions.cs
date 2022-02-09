@@ -321,7 +321,7 @@ namespace WpfApp1.CustomControls
         {
             var values = (object[])obj;
 
-            ReactionBlockCell currentCell = values.FirstOrDefault(q => q.GetType() == typeof(ReactionBlockCell)) as ReactionBlockCell;
+            CellAdapter currentCell = values.FirstOrDefault(q => q.GetType() == typeof(CellAdapter)) as CellAdapter;
             ValueDescription biomaterial = values.FirstOrDefault(q => q.GetType() == typeof(ValueDescription)) as ValueDescription;
 
             if(currentCell != null && biomaterial!=null)
@@ -332,21 +332,21 @@ namespace WpfApp1.CustomControls
         private void SelectRow(object row)
         {
             var r = (char)row - 65 + 1;
-            var allIsSelected = _Items.Where(q => ((ReactionBlockCell)q).Row == r).All(q => ((ReactionBlockCell)q).IsSelected == true);
-            _Items.Where(q => ((ReactionBlockCell)q).Row == r).Select(q => ((ReactionBlockCell)q).IsSelected = !allIsSelected).ToList();
+            var allIsSelected = _Items.Where(q => ((CellAdapter)q).Row == r).All(q => ((CellAdapter)q).IsSelected == true);
+            _Items.Where(q => ((CellAdapter)q).Row == r).Select(q => ((CellAdapter)q).IsSelected = !allIsSelected).ToList();
         }
 
         private void SelectColumn(object column)
         {
             var c = int.Parse(column.ToString());
-            var allIsSelected = _Items.Where(q => ((ReactionBlockCell)q).Column == c).All(q => ((ReactionBlockCell)q).IsSelected == true);
-            _Items.Where(q => ((ReactionBlockCell)q).Column == c).Select(q => ((ReactionBlockCell)q).IsSelected = !allIsSelected).ToList();
+            var allIsSelected = _Items.Where(q => ((CellAdapter)q).Column == c).All(q => ((CellAdapter)q).IsSelected == true);
+            _Items.Where(q => ((CellAdapter)q).Column == c).Select(q => ((CellAdapter)q).IsSelected = !allIsSelected).ToList();
         }
 
         private void SelectAll(object obj)
         {
-            var allIsSelected = _Items.All(q => ((ReactionBlockCell)q).IsSelected == true);
-            _Items.Select(q => ((ReactionBlockCell)q).IsSelected = !allIsSelected).ToArray();
+            var allIsSelected = _Items.All(q => ((CellAdapter)q).IsSelected == true);
+            _Items.Select(q => ((CellAdapter)q).IsSelected = !allIsSelected).ToArray();
         }
         #endregion
     }
