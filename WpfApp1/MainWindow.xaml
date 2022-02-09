@@ -23,7 +23,7 @@
         <control:MyCustomControl Grid.Row="1"
                                  _RowCount="{Binding Rows}" 
                                  _ColumnCount="{Binding Columns}"  
-                                 _Items="{Binding ReactionBlockItems}"
+                                 _Items="{Binding ReactionBlockItems, Mode=TwoWay}"
                                  _IsGenerateHeaders="True">
             <control:MyCustomControl._Style_ItemTemplate>
                 <DataTemplate>
