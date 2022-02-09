@@ -69,7 +69,7 @@
             </ItemsControl.ItemTemplate>
         </ItemsControl>
         <!--Реакционный блок-->
-        <ItemsControl ItemsSource="{Binding _ItemCells, ElementName=uc}" Grid.Column="1" Grid.Row="1" ItemTemplate="{Binding _Style_ItemTemplate, ElementName=uc}">
+        <ItemsControl ItemsSource="{Binding _Items, ElementName=uc}" Grid.Column="1" Grid.Row="1" ItemTemplate="{Binding _Style_ItemTemplate, ElementName=uc}">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <UniformGrid

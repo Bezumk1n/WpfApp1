@@ -109,7 +109,7 @@ namespace WpfApp1.CustomControls
             //}
             //UserControlControl._ItemCells = list;
 
-            UserControlControl._ItemCells = e.NewValue;
+            UserControlControl._Items = e.NewValue as IEnumerable<object>;
 
             //Headers
             if (UserControlControl._IsGenerateHeaders)
