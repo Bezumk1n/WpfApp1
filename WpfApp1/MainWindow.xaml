@@ -31,7 +31,7 @@
                         <Border.Resources>
                             <bindingHelper:BindingProxy 
                                 x:Key="Proxy" 
-                                Data="{Binding ElementName=uc}"/>
+                                Data="{Binding RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"/>
                         </Border.Resources>
                         <Grid>
                             <Grid.RowDefinitions>
@@ -46,12 +46,12 @@
                                 Style="{StaticResource ReactionBlock_CellTextBoxWithTag}" 
                                 Tag="Имя образца">
                             </TextBox>
-                            <ComboBox 
+                            <!--<ComboBox 
                                 Grid.Row="1" 
                                 ItemsSource="{Binding Biomaterial, Converter={StaticResource EnumToCollectionConverter}, Mode=OneTime}"
                                 SelectedValue="{Binding Biomaterial}"
                                 SelectedValuePath="Value"
-                                DisplayMemberPath="Description"/>
+                                DisplayMemberPath="Description"/>-->
                             <TextBlock Grid.Row="2" Text="{Binding Biomaterial, Converter={StaticResource EnumToStringConverter}}"/>
                             <TextBlock Grid.Row="3" Text="Методика" Tag="{Binding SampleName}" Style="{StaticResource ReactionBlock_CellWithTag}"/>
                         </Grid>
