@@ -15,7 +15,7 @@ using static WpfApp1.Helpers.EnumHelper;
 
 namespace WpfApp1.CustomControls
 {
-    public partial class MyCustomControl : INotifyPropertyChanged
+    public partial class MyCustomControl
     {
         //Reaction plate
         #region _RowCount
@@ -347,15 +347,6 @@ namespace WpfApp1.CustomControls
         {
             var allIsSelected = _Items.All(q => ((ReactionBlockCell)q).IsSelected == true);
             _Items.Select(q => ((ReactionBlockCell)q).IsSelected = !allIsSelected).ToArray();
-        }
-        #endregion
-
-        #region INotifyPropertyChanged
-        public event PropertyChangedEventHandler? PropertyChanged;
-
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
         #endregion
     }

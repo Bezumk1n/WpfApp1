@@ -24,7 +24,7 @@
                                  _RowCount="{Binding Rows}" 
                                  _ColumnCount="{Binding Columns}"  
                                  _Items="{Binding ReactionBlockItems}"
-                                 _IsGenerateHeaders="False">
+                                 _IsGenerateHeaders="True">
             <control:MyCustomControl._Style_ItemTemplate>
                 <DataTemplate>
                     <Border Style="{StaticResource ReactionBlockBorder}">
