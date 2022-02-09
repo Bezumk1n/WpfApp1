@@ -42,7 +42,7 @@
                             </Grid.RowDefinitions>
                             <TextBox 
                                 Grid.Row="0"
-                                Text="{Binding SampleName, UpdateSourceTrigger=PropertyChanged}" 
+                                Text="{Binding CellContent.SampleName, UpdateSourceTrigger=PropertyChanged}" 
                                 Style="{StaticResource ReactionBlock_CellTextBoxWithTag}" 
                                 Tag="Имя образца">
                             </TextBox>
@@ -53,7 +53,7 @@
                                 SelectedValuePath="Value"
                                 DisplayMemberPath="Description"/>-->
                             <TextBlock Grid.Row="2" Text="{Binding Biomaterial, Converter={StaticResource EnumToStringConverter}}"/>
-                            <TextBlock Grid.Row="3" Text="Методика" Tag="{Binding SampleName}" Style="{StaticResource ReactionBlock_CellWithTag}"/>
+                            <TextBlock Grid.Row="3" Text="Методика" Tag="{Binding CellContent.SampleName}" Style="{StaticResource ReactionBlock_CellWithTag}"/>
                         </Grid>
                         <Border.ContextMenu>
                             <ContextMenu>

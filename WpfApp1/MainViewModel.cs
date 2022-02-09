@@ -60,23 +60,19 @@ namespace WpfApp1
                     list.Add(new ReactionBlockCell().CreateCell(index: index++, row: i + 1, column: j + 1)) ;
             }
 
+            var nlist = new List<CellAdapter>();
             var idx = 0;
             for (int i = 0; i < Rows; i++)
             {
                 for (int j = 0; j < Columns; j++)
                 {
                     var item = new CellAdapter();
-
-                    item.CellContent = list[idx];
-                    item.Index = idx;
-                    item.Row = i + 1;
-                    item.Column = j + 1;
-
-                    ReactionBlockItems.Add(item);
-
+                    item.Create(idx, i+1,j+1, list[idx]);
                     idx++;
+                    nlist.Add(item);
                 }
             }
+            ReactionBlockItems = nlist;
         }
 
     }  

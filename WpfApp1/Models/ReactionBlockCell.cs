@@ -12,18 +12,6 @@ namespace WpfApp1.Models
         public int Column { get; set; }
         public string Position { get; set; }
 
-
-        private bool _isSelected;
-        public bool IsSelected
-        {
-            get => _isSelected;
-            set
-            {
-                _isSelected = value;
-                OnPropertyChanged();
-            }
-        }
-
         public ReactionBlockCell CreateCell(int index, int row, int column)
         {
             Index = index;

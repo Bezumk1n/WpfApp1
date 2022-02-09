@@ -22,7 +22,7 @@ namespace WpfApp1.Models
             }
         }
 
-        public CellAdapter CreateCell(int index, int row, int column, object context)
+        public CellAdapter Create(int index, int row, int column, object context)
         {
             Index = index;
             Row = row;
